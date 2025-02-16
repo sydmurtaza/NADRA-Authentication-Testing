@@ -1,0 +1,177 @@
+Summary,Issue key,Issue id,Issue Type,Status,Project key,Project name,Project type,Project lead,Project lead id,Project description,Priority,Resolution,Assignee,Assignee Id,Reporter,Reporter Id,Creator,Creator Id,Created,Updated,Last Viewed,Resolved,Due date,Votes,Description,Environment,Watchers,Watchers Id,Original estimate,Remaining Estimate,Time Spent,Work Ratio,Σ Original Estimate,Σ Remaining Estimate,Σ Time Spent,Security Level,Attachment,Custom field (Actual end),Custom field (Actual start),Custom field (Begin Date),Custom field (Change reason),Custom field (Change risk),Custom field (Change type),Custom field (Development),Custom field (End Date),Custom field (Epic Color),Custom field (Epic Name),Custom field (Epic Status),Custom field (Goals),Custom field (Impact),Custom field (Issue color),Custom field (Locked forms),Custom field (Open forms),Custom field (Project overview key),Custom field (Project overview status),Custom field (Rank),Custom field (Request Type),Custom field (Revision),Custom field (Sentiment),Custom field (Start date),Custom field (Story Points),Custom field (Story point estimate),Custom field (Submitted forms),Custom field (Target end),Custom field (Target start),Custom field (Team),Custom field (Total forms),Custom field (Vulnerability),Custom field ([CHART] Date of First Response),Custom field ([CHART] Time in Status),Status Category,Status Category Changed
+Decrypt with Invalid Base64 String.,NA-159,10329,Bug,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,11/Dec/24 11:11 PM,11/Dec/24 11:11 PM,11/Dec/24 11:13 PM,,,0,"*Test Case: TC 150*
+
+*Objective:* Validate behavior when a malformed Base64 string is passed for decryption.
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Call the {{decrypt}} method with an invalid Base64 string (e.g., ""invalid_base64"").
+*Expected Results:*
+
+* Method throws a decoding exception or handles the error gracefully.
+*Actual Results:*
+* The code will fail with a decoding error but may suppress the exception.
+*Status:* *Fail*",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001kn:,,,,,,,,,,,,,,,To Do,11/Dec/24 11:11 PM
+Encrypt with Null Value.,NA-157,10327,Bug,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 11:10 PM,11/Dec/24 11:10 PM,11/Dec/24 11:13 PM,,,0,"*Test Case: TC 148*
+
+*Objective:* Validate behavior when {{null}} is passed for encryption.
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Call the {{encrypt}} method with a {{null}} value.
+*Expected Results:*
+
+* Method throws a {{NullPointerException}} or handles the null gracefully.
+*Actual Results:*
+* The code does not explicitly handle {{null}}, causing potential exceptions.
+*Status:* *Fail*",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001k7:,,,,,,,,,,,,,,,To Do,11/Dec/24 11:10 PM
+Decrypt with Empty String.,NA-156,10326,Bug,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 11:09 PM,11/Dec/24 11:09 PM,11/Dec/24 11:13 PM,,,0,"*Test Case: TC 147*
+
+*Objective:* Validate behavior when an empty string is passed for decryption.
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Call the {{decrypt}} method with an empty string ({{""""}}).
+*Expected Results:*
+
+* Method returns an empty string or throws an exception.
+*Actual Results:*
+* Method may return {{null}} or an unexpected result due to lack of validation for empty input.
+*Status:* *Fail*",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001jz:,,,,,,,,,,,,,,,To Do,11/Dec/24 11:09 PM
+Encrypt with Empty String.,NA-155,10325,Bug,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 11:08 PM,11/Dec/24 11:08 PM,11/Dec/24 11:13 PM,,,0,"*Test Case: TC 146*
+
+*Objective:* Validate behavior when an empty string is passed for encryption.
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Call the {{encrypt}} method with an empty string ({{""""}}).
+*Expected Results:*
+
+* Method returns a Base64-encoded empty string or throws an exception.
+*Actual Results:*
+* Method does not handle empty strings, potentially returning unexpected results or failing silently.
+*Status:* *Fail*",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001jr:,,,,,,,,,,,,,,,To Do,11/Dec/24 11:08 PM
+Incorrect Exchange Credentials.,NA-154,10324,Bug,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 11:06 PM,11/Dec/24 11:06 PM,11/Dec/24 11:13 PM,,,0,"Test Case: TC 145
+
+*Objective:* Validate that the service fails gracefully when invalid credentials are provided.
+*Pre-conditions:*
+
+* Set invalid credentials (e.g., ""invalidUser"" and ""invalidPassword"").
+*Steps to Execute:*
+
+# Call the {{OtpService.send()}} method.
+*Expected Results:*
+
+* The system logs an error indicating authentication failure.
+*Actual Results:*
+* The email is processed without verifying the credentials.
+*Status:* Fail.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001jj:,,,,,,,,,,,,,,,To Do,11/Dec/24 11:06 PM
+Recipient Email Exceeding Maximum Length.,NA-153,10323,Bug,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 10:42 PM,11/Dec/24 10:42 PM,11/Dec/24 11:13 PM,,,0,"*Test Case: TC 144*
+
+*Objective:* Validate the behavior when the recipient email exceeds the typical maximum length (e.g., 320 characters).
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Generate a recipient email with more than 320 characters (e.g., ""a"".repeat(321) + [""@domain.com|mailto:""@domain.com]"").
+# Call the {{OtpService.send()}} method with this email.
+*Expected Results:*
+
+* The system throws an exception or logs an error for exceeding the maximum length.
+*Actual Results:*
+* The email is processed without error.
+*Status:* Fail.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001jb:,,,,,,,,,,,,,,,To Do,11/Dec/24 10:42 PM
+Empty Recipient Email.,NA-152,10322,Bug,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 10:41 PM,11/Dec/24 10:42 PM,11/Dec/24 11:13 PM,,,0,"*Test Case: TC 143*
+
+*Objective:* Validate the behavior when the recipient email is empty.
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Call the {{OtpService.send()}} method with an empty string ({{""""}}) as the recipient email.
+*Expected Results:*
+
+* The system throws an exception or logs an error for an empty email.
+*Actual Results:*
+* The email is processed without error.
+*Status:* Fail.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001j3:,,,,,,,,,,,,,,,To Do,11/Dec/24 10:42 PM
+Invalid Recipient Email Format.,NA-151,10321,Bug,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 10:40 PM,11/Dec/24 11:02 PM,11/Dec/24 11:13 PM,,,0,"*Test Case: TC 142*
+
+*Objective:* Validate that the service fails when an invalid recipient email format is provided.
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Call the {{OtpService.send()}} method with an invalid email format, e.g., ""invalid-email"".
+*Expected Results:*
+
+* The system throws an exception or logs an error indicating an invalid email format.
+*Actual Results:*
+* The email is processed without error.
+*Status:* Fail.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001iv:,,,,,,,,,,,,,,,To Do,11/Dec/24 10:40 PM
+Invalid Secret Key Length.,NA-150,10320,Bug,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,11/Dec/24 10:15 PM,11/Dec/24 10:38 PM,11/Dec/24 10:15 PM,,,0,"* *Test Case ID*: *TC 141*
+* *Objective*: Ensure the system works on all the lengths of the secret keys.
+* *Pre-conditions*: The {{EncryptionUtilsService}} is correctly configured with a key length validation.
+* *Steps to Execute*:
+*# Provide a secret key of length other than 16 bytes (e.g., 8 or 32 bytes).
+*# Attempt to encrypt or decrypt any value.
+* *Expected Results*: The system should encrypt the key.
+* *Actual Results*: System fails to encrypt the key.
+* *Status* : Fail",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001in:,,,,,,,,,,,,,,,To Do,11/Dec/24 10:15 PM
+Login Attempt from Invalid IP Address (Equivalence Class for IP Address Validation).,NA-148,10318,Bug,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,11/Dec/24 2:23 PM,11/Dec/24 11:12 PM,11/Dec/24 11:13 PM,,,0,"* *TC 139*
+* *Objective:* Verify behavior when login is attempted from a restricted or invalid IP address.
+* *Pre-conditions:*
+** Restrict the IP address in the application logic.
+* *Steps to Execute:*
+*# Simulate a login attempt from a restricted IP address.
+*# Send a {{POST}} request to {{/admin-login}} with:
+*#* {{username}}: {{admin}}
+*#* {{password}}: valid password
+*#* {{captchaId}}: valid CAPTCHA ID
+*#* {{captcha}}: valid CAPTCHA text
+* *Expected Results:*
+** Response status: {{400 Bad Request}}.
+** Response contains an error message related to the restricted IP address.
+* *Actual Results:* User is logged in.
+* *Status:*Fail.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001i7:,,,,,,,,,,,,,,,To Do,11/Dec/24 2:23 PM
+Successful OTP Verification and Redirection.,NA-135,10305,Bug,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,11/Dec/24 1:30 PM,11/Dec/24 1:48 PM,11/Dec/24 11:13 PM,,,0,"* *Test Case ID*: TC126
+* *Objective*: Verify that a valid OTP allows the user to log in and is redirected to {{/autoLogin}}.
+* *Pre-conditions*: A valid OTP has been sent to the user.
+* *Steps to Execute*:
+*# Enter a valid username and key.
+*# Enter the valid OTP received.
+*# Click the ""Verify OTP"" button.
+* *Expected Results*: The OTP is verified successfully, and the user is redirected to {{/autoLogin}}.
+* *Actual Results*: The account does not redirects to. autologin due to some issues.
+* *Status*: Fail.
+!Screenshot 2024-12-11 at 13.35.41.png|width=1680,height=962,alt=""Screenshot 2024-12-11 at 13.35.41.png""!",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,11/Dec/24 1:35 PM;9de607d5-585c-4e9c-92f0-b6c78d7bd0dc;Screenshot 2024-12-11 at 13.35.41.png;https://syedhussainmurtaza.atlassian.net/rest/api/3/attachment/content/10086,,,,,,,,,,,,,,,,,,,0|i001fb:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:30 PM
+ QR Code Large Data Handling.,NA-59,10229,Bug,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:13 PM,11/Dec/24 11:12 PM,11/Dec/24 11:13 PM,,,0,"*Test Case ID:* TC050
+*Objective:* Verify that the QR code generation handles large secrets efficiently.
+*Pre-conditions:* Encrypted key is valid.
+*Steps to Execute:*
+
+# Generate a long {{secret}} string.
+# Make a {{GET}} request to {{/admin/qrcode}} with the long {{secret}} and a valid {{username}}.
+# Observe the response.
+*Expected Results:* Response status is {{200 OK}}, and the response contains PNG image bytes without significant performance degradation.
+*Actual Results:* The QR code does not handles well for large data.
+*Status:* Fail",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000yf:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:13 PM
+Verify LDAP Configuration Failure,NA-39,10209,Bug,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 8:48 PM,11/Dec/24 11:12 PM,11/Dec/24 11:13 PM,,,0,"* *Test Case ID:* TC030
+* *Objective:* Ensure /login handles LDAP configuration errors properly.
+* *Pre-conditions:* Simulate an error in loading LDAP configuration.
+* *Steps to Execute:*
+*# Call /login with valid credentials when LDAP configuration is missing or incorrect.
+*# Check the response status and body.
+* *Expected Results:*
+** Response status is 500 Internal Server Error.
+** Body contains ""Failed to load LDAP configuration.""
+* *Actual Results:* Error occurs while loading LDAP configuration because LDAP implementation was commented out during the actual running of the system.
+* *Status:* Fail.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000tz:,,,,,,,,,,,,,,,To Do,10/Dec/24 8:48 PM
+Generate CAPTCHA - Large Image Handling,NA-29,10199,Bug,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 8:13 PM,10/Dec/24 8:13 PM,11/Dec/24 11:13 PM,,,0,"* *Test Case ID:* TC010
+* *Objective:* Verify the {{/generate}} endpoint handles large CAPTCHA images.
+* *Pre-conditions:* Mock {{CaptchaService.generateCaptchaImage}} to return a large image.
+* *Steps to Execute:*
+*# Call {{/generate}} endpoint.
+*# Check response size and performance.
+* *Expected Results:*
+** Response contains valid image bytes.
+** Performance does not degrade significantly.
+* *Actual Results:* Performance degrades significantly as the Captcha does not handles largers images.
+* *Status:* _Fail._",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000rr:,,,,,,,,,,,,,,,To Do,10/Dec/24 8:13 PM

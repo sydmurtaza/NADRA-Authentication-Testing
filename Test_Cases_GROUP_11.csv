@@ -1,0 +1,1509 @@
+Summary,Issue key,Issue id,Issue Type,Status,Project key,Project name,Project type,Project lead,Project lead id,Project description,Priority,Resolution,Assignee,Assignee Id,Reporter,Reporter Id,Creator,Creator Id,Created,Updated,Last Viewed,Resolved,Due date,Votes,Description,Environment,Watchers,Watchers Id,Original estimate,Remaining Estimate,Time Spent,Work Ratio,Σ Original Estimate,Σ Remaining Estimate,Σ Time Spent,Security Level,Attachment,Custom field (Actual end),Custom field (Actual start),Custom field (Begin Date),Custom field (Change reason),Custom field (Change risk),Custom field (Change type),Custom field (Development),Custom field (End Date),Custom field (Epic Color),Custom field (Epic Name),Custom field (Epic Status),Custom field (Goals),Custom field (Impact),Custom field (Issue color),Custom field (Locked forms),Custom field (Open forms),Custom field (Project overview key),Custom field (Project overview status),Custom field (Rank),Custom field (Request Type),Custom field (Revision),Custom field (Sentiment),Custom field (Start date),Custom field (Story Points),Custom field (Story point estimate),Custom field (Submitted forms),Custom field (Target end),Custom field (Target start),Custom field (Team),Custom field (Total forms),Custom field (Vulnerability),Custom field ([CHART] Date of First Response),Custom field ([CHART] Time in Status),Status Category,Status Category Changed
+Decrypt with Null Value.,NA-158,10328,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,11/Dec/24 11:11 PM,11/Dec/24 11:11 PM,11/Dec/24 11:15 PM,,,0,"*Test Case: TC 149*
+
+*Objective:* Validate behavior when {{null}} is passed for decryption.
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Call the {{decrypt}} method with a {{null}} value.
+*Expected Results:*
+
+* Method throws a {{NullPointerException}} or handles the null gracefully.
+*Actual Results:*
+* The code does not explicitly handle {{null}}, causing potential exceptions.
+*Status:* *Fail*",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001kf:,,,,,,,,,,,,,,,To Do,11/Dec/24 11:11 PM
+ Internal Server Error (Boundary Value for Exception Handling).,NA-149,10319,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,11/Dec/24 2:25 PM,11/Dec/24 2:25 PM,11/Dec/24 11:15 PM,,,0,"* *TC 140*
+* *Objective:* Validate behavior when an exception occurs during login processing.
+* *Pre-conditions:* Simulate an exception in the service logic.
+* *Steps to Execute:*
+*# Mock any of the following services to throw an exception:
+*#* {{CaptchaService.verifyCaptcha}}
+*#* {{UserSecurityService.getUserSecurity}}
+*# Send a {{POST}} request to {{/admin-login}} with:
+*#* {{username}}: {{admin}}
+*#* {{password}}: valid password
+*#* {{captchaId}}: valid CAPTCHA ID
+*#* {{captcha}}: valid CAPTCHA text
+* *Expected Results:*
+** Response status: {{400 Bad Request}}.
+** Response contains an error message: {{Internal server error}}.
+* *Actual Results:* _Error occurs during exception in the system._
+* *Status:* Pass.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001if:,,,,,,,,,,,,,,,To Do,11/Dec/24 2:25 PM
+Missing Parameters (Boundary Value for Request Validation).,NA-147,10317,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,11/Dec/24 2:21 PM,11/Dec/24 2:21 PM,11/Dec/24 11:15 PM,,,0,"* *TC 138*
+* *Objective:* Validate behavior when one or more required parameters are missing.
+* *Pre-conditions:* None.
+* *Steps to Execute:*
+*# Send a {{POST}} request to {{/admin-login}} without one or more of these parameters:
+*#* {{username}}
+*#* {{password}}
+*#* {{captchaId}}
+*#* {{captcha}}
+* *Expected Results:*
+** Response status: {{400 Bad Request}}.
+** Response contains an error message indicating the missing parameter(s).
+* *Actual Results:* Complete the field error occurs.
+* *Status:* Pass.
+!Screenshot 2024-12-11 at 14.20.56.png|width=1680,height=963,alt=""Screenshot 2024-12-11 at 14.20.56.png""!",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,11/Dec/24 2:21 PM;641b1d900152b5f4f9f1e509;Screenshot 2024-12-11 at 14.20.56.png;https://syedhussainmurtaza.atlassian.net/rest/api/3/attachment/content/10090,,,,,,,,,,,,,,,,,,,0|i001hz:,,,,,,,,,,,,,,,To Do,11/Dec/24 2:21 PM
+Invalid Credentials (Equivalence Class for Username and Password).,NA-146,10316,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,11/Dec/24 2:17 PM,11/Dec/24 2:19 PM,11/Dec/24 2:19 PM,,,0,"* *TC 137*
+* *Objective:* Validate behavior for incorrect credentials.
+* *Pre-conditions:*
+** CAPTCHA ID and text are valid.
+** Username or password does not match the expected values.
+* *Steps to Execute:*
+*# Send a {{POST}} request to {{/admin-login}} with:
+*#* {{username}}: {{admin}}
+*#* {{password}}: incorrect password
+*#* {{captchaId}}: valid CAPTCHA ID
+*#* {{captcha}}: valid CAPTCHA text
+* *Expected Results:*
+** Response status: {{400 Bad Request}}.
+** Response contains an error message: {{Invalid username or password}}.
+* *Actual Results:* Response contains an error message: {{Invalid username or password}}.
+* *Status:* Pass.
+!Screenshot 2024-12-11 at 14.18.53.png|width=1680,height=963,alt=""Screenshot 2024-12-11 at 14.18.53.png""!",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,11/Dec/24 2:19 PM;641b1d900152b5f4f9f1e509;Screenshot 2024-12-11 at 14.18.53.png;https://syedhussainmurtaza.atlassian.net/rest/api/3/attachment/content/10089,,,,,,,,,,,,,,,,,,,0|i001hr:,,,,,,,,,,,,,,,To Do,11/Dec/24 2:17 PM
+Locked Out User (Boundary for Lockout Time).,NA-145,10315,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,11/Dec/24 2:16 PM,11/Dec/24 2:16 PM,11/Dec/24 11:15 PM,,,0,"* *TC 136*
+* *Objective:* Verify login behavior for a locked-out user.
+* *Pre-conditions:*
+** User account is locked out with exactly 60 seconds remaining until unlock.
+* *Steps to Execute:*
+*# Simulate lockout with a remaining duration of 60 seconds.
+*# Send a {{POST}} request to {{/admin-login}} with:
+*#* {{username}}: {{admin}}
+*#* {{password}}: valid password
+*#* {{captchaId}}: valid CAPTCHA ID
+*#* {{captcha}}: valid CAPTCHA text
+* *Expected Results:*
+** Response status: {{400 Bad Request}}.
+** Response contains an error message: {{Account locked for 60 seconds. Try again later.}}
+* *Actual Results:* _The account is locked for 60 seconds._
+* *Status:* Pass.
+
+ 
+
+!Screenshot 2024-12-11 at 14.16.06.png|width=1680,height=963,alt=""Screenshot 2024-12-11 at 14.16.06.png""!",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,11/Dec/24 2:16 PM;641b1d900152b5f4f9f1e509;Screenshot 2024-12-11 at 14.16.06.png;https://syedhussainmurtaza.atlassian.net/rest/api/3/attachment/content/10088,,,,,,,,,,,,,,,,,,,0|i001hj:,,,,,,,,,,,,,,,To Do,11/Dec/24 2:16 PM
+Invalid CAPTCHA (Boundary Value for CAPTCHA Validation).,NA-144,10314,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,11/Dec/24 2:14 PM,11/Dec/24 2:14 PM,11/Dec/24 11:15 PM,,,0,"* *TC 135*
+* *Objective:* Validate the behavior with an invalid CAPTCHA.
+* *Pre-conditions:*
+** CAPTCHA ID is valid, but CAPTCHA text is incorrect.
+* *Steps to Execute:*
+*# Send a {{POST}} request to {{/admin-login}} with:
+*#* {{username}}: {{admin}}
+*#* {{password}}: valid password
+*#* {{captchaId}}: valid CAPTCHA ID
+*#* {{captcha}}: invalid CAPTCHA text
+* *Expected Results:*
+** Response status: {{400 Bad Request}}.
+** Response contains an error message: {{Invalid CAPTCHA}}.
+* *Actual Results:* Response contains an error message: {{Invalid CAPTCHA}}.
+* *Status:* Pass.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001hb:,,,,,,,,,,,,,,,To Do,11/Dec/24 2:14 PM
+Successful Login (Valid Credentials and CAPTCHA).,NA-143,10313,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,11/Dec/24 2:08 PM,11/Dec/24 2:13 PM,11/Dec/24 2:10 PM,,,0,"* *TC 134*
+* *Objective:* Verify successful login with valid credentials and CAPTCHA.
+* *Pre-conditions:*
+** CAPTCHA ID and text are valid.
+** Username is {{admin}} and password matches the expected password from the configuration.
+* *Steps to Execute:*
+*# Send a {{POST}} request to {{/admin-login}} with:
+*#* {{username}}: {{admin}}
+*#* {{password}}: valid password
+*#* {{captchaId}}: valid CAPTCHA ID
+*#* {{captcha}}: valid CAPTCHA text
+* *Expected Results:*
+** Response status: {{200 OK}}.
+** Response contains a {{redirect}} field with value {{/admin}}.
+** Cookie named {{key}} is set.
+* *Actual Results:* _The user is logged in to the account._
+* *Status:* Pass.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001h3:,,,,,,,,,,,,,,,To Do,11/Dec/24 2:08 PM
+Generate CAPTCHA and Verify End-to-End.,NA-142,10312,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,11/Dec/24 2:05 PM,11/Dec/24 2:05 PM,11/Dec/24 11:15 PM,,,0,"* *TC 133*
+* *Objective:* Validate the end-to-end process of CAPTCHA generation and verification.
+* *Pre-conditions:* The {{CaptchaService}} is fully functional.
+* *Steps to Execute:*
+*# Send a {{GET}} request to {{/captcha/generate}}.
+*# Extract {{Captcha-ID}} and CAPTCHA image.
+*# Send a {{POST}} request to {{/captcha/verify}} with the correct {{Captcha-ID}} and CAPTCHA text.
+* *Expected Results:*
+** Step 1: Response status: {{200 OK}} with a valid {{Captcha-ID}} and image.
+** Step 4: Response status: {{200 OK}} with message: {{CAPTCHA verified successfully.}}.
+* *Actual Results:*
+Response status: {{200 OK}} with message: {{CAPTCHA verified successfully.}}.
+* *Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001gv:,,,,,,,,,,,,,,,To Do,11/Dec/24 2:05 PM
+Handle Missing Parameters During Verification.,NA-141,10311,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,11/Dec/24 2:03 PM,11/Dec/24 2:04 PM,11/Dec/24 11:15 PM,,,0,"* *TC 132*
+* *Objective:* Verify the behavior when required parameters are missing in the verification request.
+* *Pre-conditions:* None.
+* *Steps to Execute:*
+*# Send a {{POST}} request to {{/captcha/verify}} without {{Captcha-ID}} or CAPTCHA text.
+* *Expected Results:*
+** Response status: {{400 Bad Request}}.
+** Response body: Error message indicating missing parameters.
+* *Actual Results:*
+_Error message occurs._
+* *Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001gn:,,,,,,,,,,,,,,,To Do,11/Dec/24 2:03 PM
+Verify CAPTCHA with Invalid Captcha-ID.,NA-140,10310,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,11/Dec/24 2:02 PM,11/Dec/24 2:02 PM,11/Dec/24 11:15 PM,,,0,"* *TC 131*
+* *Objective:* Validate the behavior for an invalid or non-existent {{Captcha-ID}}.
+* *Pre-conditions:* None.
+* *Steps to Execute:*
+*# Send a {{POST}} request to {{/captcha/verify}} with an invalid {{Captcha-ID}} and any CAPTCHA text.
+* *Expected Results:*
+** Response status: {{400 Bad Request}}.
+** Response body: {{Invalid CAPTCHA.}}
+* *Actual Results:*
+_Error occurs with response of invalid captcha._
+* *Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001gf:,,,,,,,,,,,,,,,To Do,11/Dec/24 2:02 PM
+Verify CAPTCHA with Invalid Text.,NA-139,10309,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Low,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,11/Dec/24 1:41 PM,11/Dec/24 1:49 PM,11/Dec/24 11:15 PM,,,0,"* *TC 130*
+* *Objective:* Validate the behavior for incorrect CAPTCHA text.
+* *Pre-conditions:*
+** Generate a CAPTCHA using {{/captcha/generate}}.
+** Use the returned {{Captcha-ID}} but modify the CAPTCHA text.
+* *Steps to Execute:*
+*# Send a {{POST}} request to {{/captcha/verify}} with the {{Captcha-ID}} and incorrect CAPTCHA text.
+* *Expected Results:*
+** Response status: {{400 Bad Request}}.
+** Response body: {{Invalid CAPTCHA.}}
+* *Actual Results:*
+_Invalid Captcha error occurs._
+* *Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001g7:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:41 PM
+Verify CAPTCHA Successfully.,NA-138,10308,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Low,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,11/Dec/24 1:39 PM,11/Dec/24 1:49 PM,11/Dec/24 11:15 PM,,,0,"* *TC129*
+* *Objective:* Validate that a correct CAPTCHA and {{Captcha-ID}} combination is verified.
+* *Pre-conditions:*
+** Generate a CAPTCHA using {{/captcha/generate}}.
+** Store the returned {{Captcha-ID}} and corresponding CAPTCHA text.
+* *Steps to Execute:*
+*# Send a {{POST}} request to {{/captcha/verify}} with the {{Captcha-ID}} and CAPTCHA text.
+* *Expected Results:*
+** Response status: {{200 OK}}.
+** Response body: {{CAPTCHA verified successfully.}}.
+* *Actual Results:*
+_Captcha verification becomes successfull._
+* *Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001fz:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:39 PM
+Handle CAPTCHA Generation Failure.,NA-137,10307,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,11/Dec/24 1:37 PM,11/Dec/24 1:49 PM,11/Dec/24 11:15 PM,,,0,"* *TC 128*
+* *Objective:* Verify the behavior when CAPTCHA generation fails.
+* *Pre-conditions:* Simulate a failure in the {{CaptchaService}} during image generation.
+* *Steps to Execute:*
+*# Mock {{CaptchaService.generateCaptchaImage}} to throw an exception.
+*# Send a {{GET}} request to {{/captcha/generate}}.
+* *Expected Results:*
+** Response status: {{500 Internal Server Error}}.
+** Response body: {{Error generating CAPTCHA image.}}
+* *Actual Results:*
+_Error occurs during captcha generation.._
+* *Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001fr:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:37 PM
+Generate CAPTCHA Successfully.,NA-136,10306,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Low,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,11/Dec/24 1:34 PM,11/Dec/24 1:49 PM,11/Dec/24 11:15 PM,,,0,"* *TC 127*
+* *Objective:* Verify that the CAPTCHA is generated successfully and returned as an image.
+* *Pre-conditions:* The {{CaptchaService}} is operational and can generate CAPTCHA text and image.
+* *Steps to Execute:*
+*# Send a {{GET}} request to {{/captcha/generate}}.
+* *Expected Results:*
+** Response status: {{200 OK}}.
+** Response contains a CAPTCHA image in PNG format.
+** Response headers include {{Captcha-ID}}.
+* *Actual Results:*
+_Captcha Image generates successfully._
+* *Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,11/Dec/24 1:36 PM;9de607d5-585c-4e9c-92f0-b6c78d7bd0dc;Screenshot 2024-12-11 at 13.36.32.png;https://syedhussainmurtaza.atlassian.net/rest/api/3/attachment/content/10087,,,,,,,,,,,,,,,,,,,0|i001fj:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:34 PM
+Locked Out User After Failed Logins.,NA-134,10304,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,11/Dec/24 1:24 PM,11/Dec/24 1:48 PM,11/Dec/24 11:15 PM,,,0,"* *Test Case ID*: TC125
+* *Objective*: Verify that a user is locked out after multiple failed login attempts.
+* *Pre-conditions*: The account lockout policy is configured, and the user has valid credentials.
+* *Steps to Execute*:
+*# Attempt login 5 times with invalid credentials.
+*# On the 6th attempt, try logging in with valid credentials.
+* *Expected Results*: The account is locked, and an error message, ""Account locked due to multiple failed attempts,"" is displayed.
+* *Actual Results*: Account locks for 60 seconds.
+* *Status*: Pass.
+!Screenshot 2024-12-11 at 13.23.55.png|width=1680,height=962,alt=""Screenshot 2024-12-11 at 13.23.55.png""!",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,11/Dec/24 1:24 PM;9de607d5-585c-4e9c-92f0-b6c78d7bd0dc;Screenshot 2024-12-11 at 13.23.55.png;https://syedhussainmurtaza.atlassian.net/rest/api/3/attachment/content/10085,,,,,,,,,,,,,,,,,,,0|i001f3:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:24 PM
+Invalid OTP Format.,NA-133,10303,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Low,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,11/Dec/24 1:22 PM,11/Dec/24 1:50 PM,11/Dec/24 11:15 PM,,,0,"* *Test Case ID*: TC124
+* *Objective*: Verify that OTP verification fails when a non-numeric OTP is entered.
+* *Pre-conditions*: User is on the OTP verification page.
+* *Steps to Execute*:
+*# Enter a valid username and valid key.
+*# Enter a non-numeric OTP (e.g., ""abc123"").
+*# Click the ""Verify OTP"" button.
+* *Expected Results*: An error message, ""Invalid OTP format,"" is displayed.
+* *Actual Results*: An error message, ""Invalid OTP format,"" is displayed.
+* *Status*: Pass.
+
+!Screenshot 2024-12-11 at 13.22.02.png|width=1680,height=962,alt=""Screenshot 2024-12-11 at 13.22.02.png""!",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,11/Dec/24 1:22 PM;9de607d5-585c-4e9c-92f0-b6c78d7bd0dc;Screenshot 2024-12-11 at 13.22.02.png;https://syedhussainmurtaza.atlassian.net/rest/api/3/attachment/content/10084,,,,,,,,,,,,,,,,,,,0|i001ev:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:22 PM
+Boundary Value for Password Length.,NA-132,10302,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,11/Dec/24 2:00 AM,11/Dec/24 2:00 AM,11/Dec/24 11:15 PM,,,0,"* *Test Case ID*: TC123
+* *Objective*: Verify that a password shorter than 3 characters is rejected.
+* *Pre-conditions*: The login page is accessible at {{/login}}.
+* *Steps to Execute*:
+*# Navigate to {{/login}}.
+*# Enter a valid username.
+*# Enter a password with 2 characters.
+*# Enter a valid CAPTCHA.
+*# Click the ""Login"" button.
+* *Expected Results*: An error message, ""Password must be at least 3 characters long,"" is displayed.
+* *Actual Results*: An error message, ""Password must be at least 3 characters long,"" is displayed.
+* *Status*: Pass.
+!Screenshot 2024-12-11 at 02.00.30.png|width=1680,height=962,alt=""Screenshot 2024-12-11 at 02.00.30.png""!",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,11/Dec/24 2:00 AM;9de607d5-585c-4e9c-92f0-b6c78d7bd0dc;Screenshot 2024-12-11 at 02.00.30.png;https://syedhussainmurtaza.atlassian.net/rest/api/3/attachment/content/10083,,,,,,,,,,,,,,,,,,,0|i001en:,,,,,,,,,,,,,,,To Do,11/Dec/24 2:00 AM
+Invalid CAPTCHA.,NA-131,10301,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,11/Dec/24 1:58 AM,11/Dec/24 1:58 AM,11/Dec/24 1:13 PM,,,0,"* *Test Case ID*: TC122
+* *Objective*: Verify that login fails when an invalid CAPTCHA is entered.
+* *Pre-conditions*: The login page is accessible at {{/login}}.
+* *Steps to Execute*:
+*# Navigate to {{/login}}.
+*# Enter a valid username and password.
+*# Enter an invalid CAPTCHA.
+*# Click the ""Login"" button.
+* *Expected Results*: An error message, ""CAPTCHA is invalid,"" is displayed, and login is blocked.
+* *Actual Results*: An error message, ""CAPTCHA is invalid,"" is displayed, and login is blocked.
+* *Status*: Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,11/Dec/24 1:58 AM;9de607d5-585c-4e9c-92f0-b6c78d7bd0dc;Screenshot 2024-12-11 at 01.58.40.png;https://syedhussainmurtaza.atlassian.net/rest/api/3/attachment/content/10082,,,,,,,,,,,,,,,,,,,0|i001ef:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:58 AM
+Valid Login Attempt. (Black Box Testing),NA-130,10300,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,11/Dec/24 1:45 AM,11/Dec/24 1:55 AM,11/Dec/24 11:15 PM,,,0,"* *Test Case ID*: TC121
+* *Objective*: Verify that a user can log in with valid credentials and CAPTCHA.
+* *Pre-conditions*: The login page is accessible at {{/login}}. Valid credentials and CAPTCHA are known.
+* *Steps to Execute*:
+*# Navigate to {{/login}}.
+*# Enter a valid username.
+*# Enter a valid password (minimum 3 characters).
+*# Enter a valid CAPTCHA.
+*# Click the ""Login"" button.
+* *Expected Results*: The user is logged in, and an OTP is sent with a success message displayed.
+* *Actual Results*: The user is logged in, and an OTP is sent with a success message displayed.
+* *Status*: Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,11/Dec/24 1:55 AM;9de607d5-585c-4e9c-92f0-b6c78d7bd0dc;Screenshot 2024-12-11 at 01.55.23.png;https://syedhussainmurtaza.atlassian.net/rest/api/3/attachment/content/10081,,,,,,,,,,,,,,,,,,,0|i001e7:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:45 AM
+Concurrent Access to UserSecurityService.,NA-129,10299,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 1:14 AM,11/Dec/24 1:48 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC120
+*Objective:* Verify the thread-safety of the {{UserSecurityService}} under concurrent access.
+*Pre-conditions:* A {{User}} object exists.
+*Steps to Execute:*
+
+# Spawn multiple threads that simultaneously call {{handleFailedLogin}} and {{handleSuccessfulLogin}} for the same {{User}}.
+# Observe the behavior and ensure no data inconsistency or exceptions occur.
+*Expected Results:* The service behaves correctly under concurrent access, with no data races or errors.
+*Actual Results:* The service behaves correctly under concurrent access, with no data races or errors.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001dz:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:14 AM
+Handle User With No Prior Security Information.,NA-128,10298,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Low,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 1:14 AM,11/Dec/24 1:50 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC119
+*Objective:* Verify that all methods handle users with no prior {{UserSecurity}} information gracefully.
+*Pre-conditions:* The {{userSecurityMap}} does not contain the user's email.
+*Steps to Execute:*
+
+# Call each method ({{handleFailedLogin}}, {{handleSuccessfulLogin}}, {{handleFailedOtp}}, {{handleSuccessfulOtp}}) with a new {{User}} object.
+# Observe the behavior and logs.
+*Expected Results:* Each method creates a new {{UserSecurity}} instance and handles the user appropriately.
+*Actual Results:* Each function creates a new UserSecurity instance and handles it properly.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001dr:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:14 AM
+Check OTP Lockout Status.,NA-127,10297,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 1:13 AM,11/Dec/24 1:13 AM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC118
+*Objective:* Verify that the OTP lockout status is correctly determined and logged.
+*Pre-conditions:* A {{User}} object exists with a {{UserSecurity}} instance that may be OTP locked out.
+*Steps to Execute:*
+
+# Call {{isOtpLockedOut}} with the {{User}} object.
+# Verify the OTP lockout status and log output.
+*Expected Results:* The correct OTP lockout status is returned and logged.
+*Actual Results:* The correct OTP lockout status is returned and logged.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001dj:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:13 AM
+Handle Successful OTP Attempt.,NA-126,10296,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 1:12 AM,11/Dec/24 1:48 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC117
+*Objective:* Verify that a successful OTP attempt resets the OTP failure counter and logs appropriately.
+*Pre-conditions:* A {{User}} object exists with a non-zero OTP failure counter.
+*Steps to Execute:*
+
+# Call {{handleSuccessfulOtp}} with the {{User}} object.
+# Observe if the OTP failure counter is reset and the successful OTP is logged.
+*Expected Results:* The counter is reset, and the successful OTP is logged.
+*Actual Results:* The counter is reset, and the successful OTP is logged.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001db:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:12 AM
+Handle Failed OTP Attempt.,NA-125,10295,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Low,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 1:11 AM,11/Dec/24 1:49 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC116
+*Objective:* Verify that a failed OTP attempt increments the OTP failure counter and logs appropriately.
+*Pre-conditions:* A {{User}} object exists.
+*Steps to Execute:*
+
+# Call {{handleFailedOtp}} with the {{User}} object.
+# Observe the OTP failure counter and log output.
+*Expected Results:* The counter is incremented, and the failed OTP is logged. If the user is OTP locked out, a lockout message is logged.
+*Actual Results:* The counter is incremented, and the failed OTP is logged. If the user is OTP locked out, a lockout message is logged.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001d3:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:11 AM
+Check User Lockout Status.,NA-124,10294,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Low,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 1:11 AM,11/Dec/24 1:50 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC115
+*Objective:* Verify that the lockout status is correctly determined and logged.
+*Pre-conditions:* A {{User}} object exists with a {{UserSecurity}} instance that may be locked out.
+*Steps to Execute:*
+
+# Call {{isUserLockedOut}} with the {{User}} object.
+# Verify the lockout status and log output.
+*Expected Results:* The correct lockout status is returned and logged.
+*Actual Results:* The correct lockout status is returned and logged.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001cv:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:11 AM
+Handle Successful Login.,NA-123,10293,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 1:10 AM,11/Dec/24 1:48 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC114
+*Objective:* Verify that a successful login resets the failed login counter and logs appropriately.
+*Pre-conditions:* A {{User}} object exists with a non-zero failed login counter.
+*Steps to Execute:*
+
+# Call {{handleSuccessfulLogin}} with the {{User}} object.
+# Observe if the failed login counter is reset and the successful login is logged.
+*Expected Results:* The counter is reset, and the successful login is logged.
+*Actual Results:* The counter is reset, and the successful login is logged.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001cn:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:10 AM
+Handle Failed Login.,NA-122,10292,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 1:09 AM,11/Dec/24 1:51 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC113
+*Objective:* Verify that a failed login attempt increments the failed login counter and logs appropriately.
+*Pre-conditions:* A {{User}} object exists.
+*Steps to Execute:*
+
+# Call {{handleFailedLogin}} with a {{User}} object.
+# Observe the failed login counter and log output.
+*Expected Results:* The counter is incremented, and the failed login is logged. If the user is locked out, a lockout message is logged.
+*Actual Results:* The counter is incremented, and the failed login is logged. If the user is locked out, a lockout message is logged
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001cf:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:09 AM
+Retrieve Existing UserSecurity Instance.,NA-121,10291,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Lowest,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 1:08 AM,11/Dec/24 1:54 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC112
+*Objective:* Verify that the existing {{UserSecurity}} instance is returned for a user in the {{userSecurityMap}}.
+*Pre-conditions:* The {{userSecurityMap}} contains an entry for the user's email.
+*Steps to Execute:*
+
+# Add a {{UserSecurity}} instance to the {{userSecurityMap}} manually.
+# Call {{getUserSecurity}} with the corresponding {{User}} object.
+*Expected Results:* The existing {{UserSecurity}} instance is returned without creating a new one.
+*Actual Results:* The existing {{UserSecurity}} instance is returned without creating a new one.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001c7:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:08 AM
+Create New UserSecurity Instance.,NA-120,10290,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Low,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 1:07 AM,11/Dec/24 1:52 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC111
+*Objective:* Verify that a new {{UserSecurity}} instance is created for a user when none exists in the {{userSecurityMap}}.
+*Pre-conditions:* The {{userSecurityMap}} does not contain the user's email.
+*Steps to Execute:*
+
+# Call {{getUserSecurity}} with a {{User}} object whose email is not in {{userSecurityMap}}.
+# Observe if a new {{UserSecurity}} instance is created and stored in the map.
+*Expected Results:* A new {{UserSecurity}} instance is created, logged, and added to the map.
+*Actual Results:* A new User Security Instance is Created.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001bz:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:07 AM
+General Exception Handling.,NA-119,10289,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Low,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 1:02 AM,11/Dec/24 1:53 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC110
+*Objective:* Verify the behavior of the {{send}} method when a general exception occurs.
+*Pre-conditions:* Simulate a general exception (e.g., by mocking {{WebCredentials}} or {{ExchangeService}} to throw an exception).
+*Steps to Execute:*
+
+# Call the {{send}} method under conditions that trigger a general exception.
+# Verify that the exception is logged and the method does not crash.
+*Expected Results:* The method logs the exception and exits gracefully.
+*Actual Results:* The function displays the error and exits successfully.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001br:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:02 AM
+Handle Empty Exchange Server Configuration.,NA-118,10288,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Lowest,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 1:01 AM,11/Dec/24 1:53 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC109
+*Objective:* Verify the behavior of the {{send}} method when no Exchange server URL is configured.
+*Pre-conditions:* Set the {{URI}} in {{service.setUrl}} to an empty string or null.
+*Steps to Execute:*
+
+# Call the {{send}} method.
+# Verify that an appropriate exception is logged.
+*Expected Results:* The method logs an error about the missing server configuration.
+*Actual Results:* The function logs an error about the missing server configuration.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001bj:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:01 AM
+Handle Missing SSL Protocol.,NA-117,10287,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Lowest,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 1:01 AM,11/Dec/24 1:53 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC108
+*Objective:* Verify the behavior of the {{send}} method when the SSL protocol is unavailable.
+*Pre-conditions:* Simulate an environment where ""TLS"" is not supported.
+*Steps to Execute:*
+
+# Call the {{send}} method.
+# Verify that an appropriate exception is logged.
+*Expected Results:* The method logs an error about the missing protocol and handles the exception gracefully.
+*Actual Results:* The function logs an error and handles exception gracefully.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001bb:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:01 AM
+Verify TrustManager Implementation.,NA-116,10286,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Lowest,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 1:00 AM,11/Dec/24 1:54 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC107
+*Objective:* Verify that the {{TrustManager}} implementation allows all certificates.
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Call the {{send}} method.
+# Verify that the {{checkClientTrusted}} and {{checkServerTrusted}} methods allow all certificates without exceptions.
+*Expected Results:* All certificates are trusted without exceptions.
+*Actual Results:* All certificates are trusted.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001b3:,,,,,,,,,,,,,,,To Do,11/Dec/24 1:00 AM
+Send OTP to Multiple Recipients Sequentially.,NA-115,10285,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Low,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:59 AM,11/Dec/24 1:52 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC106
+*Objective:* Verify the behavior of the {{send}} method when called for multiple recipients.
+*Pre-conditions:* Provide a list of valid recipients.
+*Steps to Execute:*
+
+# Call the {{send}} method for multiple recipients (e.g., {{user1@example.com}}, {{user2@example.com}}).
+# Verify that the method executes without errors for all recipients.
+*Expected Results:* The method executes successfully for all recipients.
+*Actual Results:* The method executes successfully for all recipients.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001av:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:59 AM
+Handle Invalid Credentials.,NA-114,10284,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:58 AM,11/Dec/24 1:52 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC105
+*Objective:* Verify the behavior of the {{send}} method with invalid Exchange credentials.
+*Pre-conditions:* Provide invalid credentials.
+*Steps to Execute:*
+
+# Modify the {{WebCredentials}} object to use invalid credentials.
+# Call the {{send}} method.
+# Verify that the method logs an error and does not proceed with sending the email.
+*Expected Results:* An error is logged, and the method handles the exception gracefully.
+*Actual Results:*An error is logged, and the method handles the exception gracefully.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001an:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:58 AM
+Handle Invalid Exchange Server URL.,NA-113,10283,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Low,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:57 AM,11/Dec/24 1:53 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC104
+*Objective:* Verify the behavior of the {{send}} method when the Exchange server URL is invalid.
+*Pre-conditions:* Provide an invalid server URL.
+*Steps to Execute:*
+
+# Modify the {{service.setUrl}} line to use an invalid URL.
+# Call the {{send}} method and monitor the output.
+*Expected Results:* An exception is logged, and the method does not crash.
+*Actual Results:* An exception is logged, and the method does not crash.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001af:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:57 AM
+SSL Configuration.,NA-112,10282,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Lowest,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:57 AM,11/Dec/24 1:54 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC103
+*Objective:* Verify that the SSL context is configured to trust all certificates.
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Call the {{send}} method.
+# Verify that the SSL context and hostname verifier are configured to trust all certificates and hostnames.
+*Expected Results:* The SSL context and hostname verifier are configured as expected.
+*Actual Results:* The SSL context and hostname verifier are configured as expected.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i001a7:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:57 AM
+Handle Null Recipient.,NA-111,10281,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:56 AM,11/Dec/24 12:56 AM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC102
+*Objective:* Verify the behavior of the {{send}} method when the recipient is null.
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Call the {{send}} method with {{null}} as the recipient.
+# Verify that the method does not throw exceptions and handles the case gracefully.
+*Expected Results:* The method completes gracefully without throwing an exception.
+*Actual Results:* The function completes gracefully.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0019z:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:56 AM
+Send OTP Email to Valid Recipient.,NA-110,10280,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:54 AM,11/Dec/24 1:52 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC101
+*Objective:* Verify that the {{send}} method configures the Exchange service and sends an OTP email to a valid recipient.
+*Pre-conditions:* The Exchange server is accessible, and credentials are valid.
+*Steps to Execute:*
+
+# Call the {{send}} method with a valid recipient email, e.g., {{user@example.com}}.
+# Monitor the method's behavior and verify no exceptions are thrown.
+*Expected Results:* The method executes without errors, and the Exchange service is configured.
+*Actual Results:* The email message is sent to the recipient successfully.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0019r:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:54 AM
+Generate OTP with Unwritable File.,NA-109,10279,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:49 AM,11/Dec/24 12:49 AM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC100
+*Objective:* Verify that the {{saveOtpToFile}} method handles an unwritable file gracefully.
+*Pre-conditions:* Make the OTP file read-only.
+*Steps to Execute:*
+
+# Call the {{generateOtp}} method with username ""testUser"".
+# Verify that an error is logged, and no exception is thrown.
+*Expected Results:* An error is logged, and the method handles it gracefully.
+*Actual Results:* Error occurs and the function handles error well.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0019j:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:49 AM
+Handle Missing OTP File.,NA-108,10278,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:48 AM,11/Dec/24 12:48 AM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC099
+*Objective:* Verify that the {{loadOtpFromFile}} method handles a missing OTP file gracefully.
+*Pre-conditions:* The OTP file does not exist.
+*Steps to Execute:*
+
+# Call the {{loadOtpFromFile}} method.
+# Verify that an empty map is returned, and no exceptions are thrown.
+*Expected Results:* An empty map is returned gracefully.
+*Actual Results:*The function displays an empty map.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0019b:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:48 AM
+Handle Empty OTP File.,NA-107,10277,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:47 AM,11/Dec/24 12:47 AM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC098
+*Objective:* Verify that the {{loadOtpFromFile}} method handles an empty OTP file gracefully.
+*Pre-conditions:* The OTP file exists but is empty.
+*Steps to Execute:*
+
+# Call the {{loadOtpFromFile}} method.
+# Verify that an empty map is returned.
+*Expected Results:* An empty map is returned.
+*Actual Results:* The function handles empty OTP file well.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i00193:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:47 AM
+Load OTP File with Invalid Format.,NA-106,10276,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:46 AM,11/Dec/24 12:46 AM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC097
+*Objective:* Verify that the {{loadOtpFromFile}} method handles lines with invalid formats gracefully.
+*Pre-conditions:* The OTP file contains an invalid line, such as ""invalidLine"".
+*Steps to Execute:*
+
+# Call the {{loadOtpFromFile}} method.
+# Verify that the invalid line is skipped, and the rest of the file is processed correctly.
+*Expected Results:* Invalid lines are ignored, and valid lines are processed.
+*Actual Results:* The function ignores the invalid lines successfully and valid lines are processed successfully.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0018v:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:46 AM
+Generate and Verify OTP Flow.,NA-105,10275,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:45 AM,11/Dec/24 1:51 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC096
+*Objective:* Verify the full flow of generating and verifying an OTP for a username.
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Call the {{generateOtp}} method with username ""testUser"".
+# Use the returned OTP to call the {{verifyOtp}} method.
+# Verify that the method returns {{true}}.
+*Expected Results:* The OTP is verified successfully.
+*Actual Results:* The OTP verifies successfully.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0018n:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:45 AM
+Verify OTP for Nonexistent Username.,NA-104,10274,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:43 AM,11/Dec/24 1:52 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC095
+*Objective:* Verify that the {{verifyOtp}} method handles a username not present in the file.
+*Pre-conditions:* The user ""unknownUser"" is not present in the OTP file.
+*Steps to Execute:*
+
+# Call the {{verifyOtp}} method with username ""unknownUser"" and any OTP.
+# Verify that the method returns {{false}}.
+*Expected Results:* The method returns {{false}}.
+*Actual Results:* The method returns false for non existing usernames.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0018f:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:43 AM
+Verify Incorrect OTP.,NA-103,10273,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:41 AM,11/Dec/24 1:52 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC094
+*Objective:* Verify that the {{verifyOtp}} method rejects an incorrect OTP for a username.
+*Pre-conditions:* An OTP for the user ""testUser"" exists in the file.
+*Steps to Execute:*
+
+# Call the {{verifyOtp}} method with username ""testUser"" and an incorrect OTP.
+# Verify that the method returns {{false}}.
+*Expected Results:* The method returns {{false}}.
+*Actual Results:* The function successfully rejects an incorrect OTP for a user.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i00187:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:41 AM
+Verify Correct OTP.,NA-102,10272,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:40 AM,11/Dec/24 12:40 AM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC083
+*Objective:* Verify that the {{verifyOtp}} method validates a correct OTP for a username.
+*Pre-conditions:* An OTP for the user ""testUser"" exists in the file.
+*Steps to Execute:*
+
+# Call the {{verifyOtp}} method with username ""testUser"" and the correct OTP.
+# Verify that the method returns {{true}}.
+*Expected Results:* The method returns {{true}}.
+*Actual Results:* The function validates a correct OTP for a username.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0017z:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:40 AM
+Save OTP to File.,NA-101,10271,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:39 AM,11/Dec/24 12:39 AM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC092
+*Objective:* Verify that the {{saveOtpToFile}} method saves the OTP to the file correctly.
+*Pre-conditions:* The OTP file exists and is writable.
+*Steps to Execute:*
+
+# Call {{saveOtpToFile}} with the username ""testUser"" and OTP ""1234"".
+# Verify that the file contains the line {{testUser=1234}}.
+*Expected Results:* The OTP is appended to the file correctly.
+*Actual Results:* The function saves OTP to the file correctly.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0017r:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:39 AM
+Generate OTP for Valid Username.,NA-100,10270,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:37 AM,11/Dec/24 12:37 AM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC091
+*Objective:* Verify that the {{generateOtp}} method generates a valid 4-digit OTP for a given username.
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Call the {{generateOtp}} method with the username ""testUser"".
+# Verify that a 4-digit OTP is returned.
+*Expected Results:* A valid 4-digit OTP is returned.
+*Actual Results:* The function generates a valid 4 digit OTP.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0017j:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:37 AM
+Handle Error in Decryption.,NA-99,10269,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:31 AM,11/Dec/24 12:31 AM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC090
+*Objective:* Verify that errors during decryption are logged and handled properly.
+*Pre-conditions:* Provide an invalid secret key length or incorrect cipher setup.
+*Steps to Execute:*
+
+# Call the {{decrypt}} method with a valid encrypted string.
+# Verify that the method logs the error and returns null.
+*Expected Results:* The method logs the error and returns null.
+*Actual Results:* Errors during decryption are being handled properly.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0017b:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:31 AM
+Handle Error in Encryption.,NA-98,10268,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Low,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:30 AM,11/Dec/24 1:53 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC089
+*Objective:* Verify that errors during encryption are logged and handled properly.
+*Pre-conditions:* Provide an invalid secret key length.
+*Steps to Execute:*
+
+# Call the {{encrypt}} method with a valid input string.
+# Verify that the method logs the error and returns null.
+*Expected Results:* The method logs the error and returns null.
+*Actual Results:* The errors are handled properly during encryption.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i00173:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:30 AM
+Check Authorization with Null Key.,NA-97,10267,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Low,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:30 AM,11/Dec/24 1:52 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC088
+*Objective:* Verify the behavior of {{isAuthorized}} when the input is null.
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Call the {{isAuthorized}} method with a null value.
+# Verify the return value is false.
+*Expected Results:* The method returns false gracefully.
+*Actual Results:* The function returns false.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0016v:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:30 AM
+Check Authorization with Invalid Encrypted Key.,NA-96,10266,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:29 AM,11/Dec/24 12:29 AM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC087
+*Objective:* Verify that the {{isAuthorized}} method correctly rejects invalid authorization.
+*Pre-conditions:* Use a valid secret key.
+*Steps to Execute:*
+
+# Call the {{isAuthorized}} method with an incorrect encrypted key.
+# Verify the return value is false.
+*Expected Results:* The method returns false.
+*Actual Results:* The function returns invalid authorization successfully.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0016n:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:29 AM
+Check Authorization with Valid Encrypted Key.,NA-95,10265,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:28 AM,11/Dec/24 12:28 AM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC086
+*Objective:* Verify that the {{isAuthorized}} method correctly identifies valid authorization.
+*Pre-conditions:*
+
+* Use a valid secret key.
+* Encrypt the correct value corresponding to the required configuration.
+*Steps to Execute:*
+
+# Encrypt the configuration value from {{CsvManagerService}}.
+# Call the {{isAuthorized}} method with the encrypted value.
+# Verify the return value is true.
+*Expected Results:* The method returns true.
+*Actual Results:* The function correctly identifies the valid authorization.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0016f:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:28 AM
+Decrypt with Null Value.,NA-94,10264,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Low,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:27 AM,11/Dec/24 1:56 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC085
+*Objective:* Verify the behavior of the {{decrypt}} method when the input is null.
+*Pre-conditions:* Provide a valid secret key.
+*Steps to Execute:*
+
+# Call the {{decrypt}} method with a null value.
+# Verify that the method does not throw exceptions and returns null.
+*Expected Results:* The method returns null gracefully.
+*Actual Results:* The function returns null.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i00167:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:27 AM
+Decrypt with Invalid Encrypted String.,NA-93,10263,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:26 AM,11/Dec/24 12:26 AM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC084
+*Objective:* Verify the behavior of the {{decrypt}} method when the input is invalid.
+*Pre-conditions:* Provide a valid secret key.
+*Steps to Execute:*
+
+# Call the {{decrypt}} method with a random invalid Base64 string.
+# Verify that the method handles the error and returns null.
+*Expected Results:* The method returns null gracefully.
+*Actual Results:* The function returns null.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0015z:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:26 AM
+Decrypt Valid Encrypted String.,NA-92,10262,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:25 AM,11/Dec/24 1:56 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC083
+*Objective:* Verify that the {{decrypt}} method decrypts a valid encrypted string correctly.
+*Pre-conditions:* Use the same secret key for encryption and decryption.
+*Steps to Execute:*
+
+# Encrypt the string ""testValue"".
+# Call the {{decrypt}} method with the encrypted value.
+# Verify that the decrypted value matches the original string.
+*Expected Results:* The decrypted value is ""testValue"".
+*Actual Results:* The decrypt function decrypts a valid encrypted string successfully.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0015r:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:25 AM
+Encrypt with Null Value.,NA-91,10261,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:23 AM,11/Dec/24 12:23 AM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC082
+*Objective:* Verify the behavior of the {{encrypt}} method when input is null.
+*Pre-conditions:* Provide a valid secret key.
+*Steps to Execute:*
+
+# Call the {{encrypt}} method with a null value.
+# Verify that the method does not throw exceptions and returns null.
+*Expected Results:* The method returns null gracefully.
+*Actual Results:* The function returns null.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0015j:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:23 AM
+Encrypt Valid Value.,NA-90,10260,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,i220628 Hammad Ali,64196f347222b08f3e722770,i220628 Hammad Ali,64196f347222b08f3e722770,11/Dec/24 12:22 AM,11/Dec/24 1:55 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC081
+*Objective:* Verify that the {{encrypt}} method encrypts a valid string correctly.
+*Pre-conditions:* Provide a valid secret key and a string to encrypt.
+*Steps to Execute:*
+
+# Call the {{encrypt}} method with the input string ""testValue"".
+# Verify that the returned string is not null or empty.
+*Expected Results:* An encrypted Base64-encoded string is returned.
+*Actual Results:* The string is encrypted correctly.
+*Status:* Pass.",,i220628 Hammad Ali,64196f347222b08f3e722770,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0015b:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:22 AM
+Read Configuration File.,NA-89,10259,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Low,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,11/Dec/24 12:04 AM,11/Dec/24 1:59 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC080
+*Objective:* Verify that {{getConfiguration}} reads all entries from the configuration file.
+*Pre-conditions:* The configuration file exists with valid entries.
+*Steps to Execute:*
+
+# Call {{getConfiguration()}}.
+# Verify that the method returns a list of all configuration entries.
+*Expected Results:* All entries in the configuration file are returned as a list.
+*Actual Results:* the fuction successfully reads all the entries from the configuration file.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i00153:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:04 AM
+ Handle Missing Configuration Entries.,NA-88,10258,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,11/Dec/24 12:02 AM,11/Dec/24 12:02 AM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC079
+*Objective:* Verify that {{updateConfiguration}} handles missing entries in the configuration file gracefully.
+*Pre-conditions:* The configuration file exists with fewer than 5 entries.
+*Steps to Execute:*
+
+# Call {{updateConfiguration(""admin"", ""ldap://example.com"", ""example.com"", ""192.168.1.1"", ""adminpass"")}}.
+# Verify that a warning is logged and no update occurs.
+*Expected Results:* The method logs a warning and does not update the file.
+*Actual Results:* The function displays warning and the file is not updated.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0014v:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:02 AM
+Update Configuration File.,NA-87,10257,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,11/Dec/24 12:01 AM,11/Dec/24 12:01 AM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC078
+*Objective:* Verify that {{updateConfiguration}} updates the admin configuration correctly.
+*Pre-conditions:* The configuration file exists with placeholder values.
+*Steps to Execute:*
+
+# Call {{updateConfiguration(""admin"", ""ldap://example.com"", ""example.com"", ""192.168.1.1"", ""adminpass"")}}.
+# Verify that the configuration file contains the updated values.
+*Expected Results:* The configuration file is updated successfully.
+*Actual Results:* The configuration file updates successfully.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0014n:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:01 AM
+Retrieve All Users.,NA-86,10256,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,11/Dec/24 12:00 AM,11/Dec/24 12:00 AM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC077
+*Objective:* Verify that {{getAllUsers}} retrieves all users from the CSV file as a map.
+*Pre-conditions:* Multiple users exist in the CSV.
+*Steps to Execute:*
+
+# Call {{getAllUsers()}}.
+# Verify that the returned map contains all users and their keys.
+*Expected Results:* The method returns a map of all users.
+*Actual Results:* The function returns a list of all users.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0014f:,,,,,,,,,,,,,,,To Do,11/Dec/24 12:00 AM
+Delete User by Email.,NA-85,10255,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:59 PM,10/Dec/24 11:59 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC076
+*Objective:* Verify that {{deleteUserByKey}} removes a user from the CSV file.
+*Pre-conditions:* The user [""testuser@example.com|mailto:""testuser@example.com]"" exists in the CSV.
+*Steps to Execute:*
+
+# Call {{deleteUserByKey(""testuser@example.com"")}}.
+# Verify that the user is no longer present in the CSV.
+*Expected Results:* The user is removed successfully.
+*Actual Results:* The user is removed successfully.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i00147:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:59 PM
+Handle Nonexistent User in getSecretKey.,NA-84,10254,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:58 PM,10/Dec/24 11:58 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC075
+*Objective:* Verify that the {{getSecretKey}} method returns an empty string for nonexistent users.
+*Pre-conditions:* The user [""nonexistent@example.com|mailto:""nonexistent@example.com]"" does not exist in the CSV.
+*Steps to Execute:*
+
+# Call {{getSecretKey(""nonexistent@example.com"")}}.
+*Expected Results:* The method returns an empty string.
+*Actual Results:* The function returns an empty string.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0013z:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:58 PM
+Retrieve Secret Key for Existing User.,NA-83,10253,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:58 PM,10/Dec/24 11:58 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC074
+*Objective:* Verify that the {{getSecretKey}} method retrieves the correct key for an existing user.
+*Pre-conditions:* The user [""testuser@example.com|mailto:""testuser@example.com]"" with key ""secretkey123"" exists in the CSV.
+*Steps to Execute:*
+
+# Call {{getSecretKey(""testuser@example.com"")}}.
+# Verify that the method returns ""secretkey123"".
+*Expected Results:* The correct secret key is returned.
+*Actual Results:* The correct key for an exisiting user is. retreived.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0013r:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:58 PM
+Check If User Exists.,NA-82,10252,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:56 PM,10/Dec/24 11:57 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC073
+*Objective:* Verify that the {{userExists}} method correctly identifies whether a user exists.
+*Pre-conditions:* The user [""testuser@example.com|mailto:""testuser@example.com]"" exists in the CSV.
+*Steps to Execute:*
+
+# Call {{userExists(""testuser@example.com"")}}.
+# Verify that the method returns {{true}}.
+*Expected Results:* The method returns {{true}}.
+*Actual Results:* The function returns true.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0013j:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:57 PM
+Prevent Adding Duplicate User.,NA-81,10251,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:55 PM,10/Dec/24 11:55 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC072
+*Objective:* Ensure that duplicate users cannot be added to the CSV file.
+*Pre-conditions:* The user [""testuser@example.com|mailto:""testuser@example.com]"" exists in the CSV.
+*Steps to Execute:*
+
+# Call {{addUser(""testuser@example.com"", ""newkey456"")}}.
+# Verify that the key for [""testuser@example.com|mailto:""testuser@example.com]"" remains unchanged in the CSV file.
+*Expected Results:* The method does not overwrite the existing user and logs a warning.
+*Actual Results:* Duplicate users are not added.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0013b:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:55 PM
+Add a New User.,NA-80,10250,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:54 PM,10/Dec/24 11:54 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC071
+*Objective:* Verify that a new user is successfully added to the CSV file.
+*Pre-conditions:* The user does not already exist in the CSV file.
+*Steps to Execute:*
+
+# Call {{addUser(""testuser@example.com"", ""secretkey123"")}}.
+# Verify that the user and key are written to the CSV file.
+*Expected Results:* The user [""testuser@example.com|mailto:""testuser@example.com]"" with the key ""secretkey123"" is added to the CSV.
+*Actual Results:* The user is successfully added to the csv file.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i00133:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:54 PM
+Generate Unique CAPTCHA IDs.,NA-79,10249,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:48 PM,10/Dec/24 11:48 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC070
+*Objective:* Verify that each call to {{createCaptcha}} generates a unique CAPTCHA ID.
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Call {{createCaptcha()}} multiple times.
+# Verify that all returned IDs are unique.
+*Expected Results:* All CAPTCHA IDs are unique.
+*Actual Results:* Everytime a unique CAPTCHA ID is generated.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0012v:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:48 PM
+Check CAPTCHA Text Persistence.,NA-78,10248,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:47 PM,10/Dec/24 11:47 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC069
+*Objective:* Verify that CAPTCHA text is stored correctly in {{captchaStore}}.
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Generate a CAPTCHA using {{createCaptcha()}}.
+# Retrieve the CAPTCHA text directly from {{captchaStore}} using the returned ID.
+*Expected Results:* The text matches the one generated for the CAPTCHA ID.
+*Actual Results:* The CAPTCHA text is successfully stored in the Captcha Store.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0012n:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:47 PM
+Handle Nonexistent CAPTCHA ID for Base64 Image.,NA-77,10247,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:46 PM,10/Dec/24 11:46 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC068
+*Objective:* Verify that {{getCaptchaImageBase64}} returns {{null}} for nonexistent CAPTCHA IDs.
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Call {{getCaptchaImageBase64()}} with a random, nonexistent CAPTCHA ID.
+*Expected Results:* The method returns {{null}}.
+*Actual Results:* The CAPTCHA image returns null for non existing CAPTCHA IDs
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0012f:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:46 PM
+Generate CAPTCHA Image as Base64.,NA-76,10246,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:45 PM,10/Dec/24 11:45 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC067
+*Objective:* Verify that {{getCaptchaImageBase64}} returns a valid Base64 string for an existing CAPTCHA ID.
+*Pre-conditions:* A valid CAPTCHA ID exists in {{captchaStore}}.
+*Steps to Execute:*
+
+# Generate a CAPTCHA using {{createCaptcha()}}.
+# Call {{getCaptchaImageBase64()}} with the generated CAPTCHA ID.
+# Decode the Base64 string and verify it represents a valid image.
+*Expected Results:* A valid Base64 string is returned, and decoding it produces the correct CAPTCHA image.
+*Actual Results:* A valid BAse64 string is return as a CAPTCHA ID.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i00127:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:45 PM
+Verify CAPTCHA with Nonexistent ID.,NA-75,10245,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:43 PM,10/Dec/24 11:43 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC066
+*Objective:* Verify that the {{verifyCaptcha}} method handles nonexistent CAPTCHA IDs gracefully.
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Call {{verifyCaptcha}} with a random, nonexistent CAPTCHA ID.
+# Observe the result.
+*Expected Results:* The method returns {{false}}.
+*Actual Results:* The CAPTCHA returns false for the non existence CAPTCHA ID.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0011z:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:43 PM
+Verify CAPTCHA with Incorrect Input.,NA-74,10244,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:42 PM,10/Dec/24 11:42 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC065
+*Objective:* Verify that the {{verifyCaptcha}} method returns {{false}} for incorrect input.
+*Pre-conditions:* A valid CAPTCHA ID exists in {{captchaStore}}.
+*Steps to Execute:*
+
+# Generate a CAPTCHA using {{createCaptcha()}}.
+# Call {{verifyCaptcha}} with the correct CAPTCHA ID and an incorrect text.
+*Expected Results:* The method returns {{false}}.
+*Actual Results:* The CAPTCHA returns false for the incorrect data.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0011r:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:42 PM
+Verify CAPTCHA with Correct Input.,NA-73,10243,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:41 PM,10/Dec/24 11:41 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC064
+*Objective:* Verify that the {{verifyCaptcha}} method returns {{true}} for correct input.
+*Pre-conditions:* A valid CAPTCHA ID and corresponding text exist in {{captchaStore}}.
+*Steps to Execute:*
+
+# Generate a CAPTCHA using {{createCaptcha()}}.
+# Call {{verifyCaptcha}} with the correct CAPTCHA ID and text.
+*Expected Results:* The method returns {{true}}.
+*Actual Results:* the CaptchaID returns true for correct input successfully.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0011j:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:41 PM
+Create CAPTCHA and Store It.,NA-72,10242,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Low,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:39 PM,11/Dec/24 1:59 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC063
+*Objective:* Verify that {{createCaptcha}} generates a valid CAPTCHA ID and stores the CAPTCHA text.
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Call {{createCaptcha()}}.
+# Verify that a non-null, non-empty string (CAPTCHA ID) is returned.
+# Verify that the generated CAPTCHA text is stored in {{captchaStore}} under the generated ID.
+*Expected Results:* A valid CAPTCHA ID is generated, and the text is stored.
+*Actual Results:* The captcha id is generated and the test is stored successfully.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0011b:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:39 PM
+Generate CAPTCHA Image.,NA-71,10241,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:38 PM,10/Dec/24 11:38 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC062
+*Objective:* Verify that the {{generateCaptchaImage}} method creates a valid image for a given CAPTCHA text.
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Call {{generateCaptchaText()}} to generate a CAPTCHA string.
+# Pass the string to {{generateCaptchaImage()}}.
+# Verify that the returned object is a valid {{BufferedImage}}.
+*Expected Results:* A {{BufferedImage}} is returned with the correct dimensions (200x50).
+*Actual Results:* The images is generated successfully.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i00113:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:38 PM
+Generate CAPTCHA Text.,NA-70,10240,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:38 PM,10/Dec/24 11:38 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC061
+*Objective:* Verify that the {{generateCaptchaText}} method generates a CAPTCHA text of the correct length and format.
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Call {{generateCaptchaText()}}.
+# Verify the length of the returned string is {{CAPTCHA_LENGTH}} (5).
+# Verify the string contains only characters from {{CAPTCHA_CHARS}}.
+*Expected Results:* The CAPTCHA text is 5 characters long and contains only numeric characters (0-9).
+*Actual Results:* The CAPTCHA correctly generated 5 characters long numeric text.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0010v:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:38 PM
+Fetch Configurations With Error Handling.,NA-69,10239,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:34 PM,10/Dec/24 11:34 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC060
+*Objective:* Verify that the system handles exceptions gracefully while fetching configurations.
+*Pre-conditions:* Valid {{key}} cookie is set.
+*Steps to Execute:*
+
+# Mock {{CsvManagerService.getConfiguration}} to throw an exception.
+# Send a GET request to {{/admin/config}}.
+# Observe the response.
+*Expected Results:* The user is redirected to {{/admin/login}}, and appropriate logs are generated.
+*Actual Results:* The user is redirected to the login panel.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0010n:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:34 PM
+Handle Invalid Configuration Inputs.,NA-68,10238,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:32 PM,10/Dec/24 11:32 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC059
+*Objective:* Verify that the system handles invalid inputs during configuration updates.
+*Pre-conditions:* Valid {{key}} cookie is set.
+*Steps to Execute:*
+
+# Set a valid {{key}} cookie.
+# Send a POST request to {{/admin/config}} with invalid data (e.g., empty fields or invalid formats).
+# Observe the response and flash attributes.
+*Expected Results:* Error message is displayed, and configuration is not updated.
+*Actual Results:* Error message is disaplyed while leaviing empty inputs in the field.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i0010f:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:32 PM
+Fetch New User Form Without Authentication.,NA-67,10237,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:31 PM,10/Dec/24 11:31 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC058
+*Objective:* Verify that unauthorized users are redirected to the login page when accessing the new user form.
+*Pre-conditions:* No valid {{key}} cookie is set.
+*Steps to Execute:*
+
+# Send a GET request to {{/admin/user}} without the {{key}} cookie.
+# Observe the response.
+*Expected Results:* Response is a redirection to {{/admin/login}}.
+*Actual Results:* The unverified users are redirected to the login page successfully.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i00107:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:31 PM
+Access Admin Index Without Authentication.,NA-66,10236,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:30 PM,10/Dec/24 11:30 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC057
+*Objective:* Verify that unauthorized users are redirected to the login page when accessing the admin index.
+*Pre-conditions:* No valid {{key}} cookie is set.
+*Steps to Execute:*
+
+# Send a GET request to {{/admin}} without the {{key}} cookie.
+# Observe the response.
+*Expected Results:* Response is a redirection to {{/admin/login}}.
+*Actual Results:* The unverified users are redirected to the login page while accessing the admin panel succcessfully.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000zz:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:30 PM
+Add Existing User.,NA-65,10235,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Low,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:29 PM,11/Dec/24 1:59 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC056
+*Objective:* Verify that attempting to add an existing user results in an appropriate error message.
+*Pre-conditions:* Valid {{key}} cookie is set, and the user already exists in the system.
+*Steps to Execute:*
+
+# Set a valid {{key}} cookie.
+# Send a POST request to {{/admin/user}} with a username that already exists.
+# Observe the response and flash attributes.
+*Expected Results:* Error message ""User already exists."" is displayed.
+*Actual Results:* “User already Exists” error message is displayed.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000zr:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:29 PM
+Add New User with Valid Data.,NA-64,10234,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:28 PM,10/Dec/24 11:28 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC055
+*Objective:* Verify that authorized users can add a new user.
+*Pre-conditions:* Valid {{key}} cookie is set, and the user does not exist in the system.
+*Steps to Execute:*
+
+# Set a valid {{key}} cookie.
+# Send a POST request to {{/admin/user}} with a valid username and token.
+# Observe the response and flash attributes.
+*Expected Results:* User is added successfully, and a success message is shown.
+*Actual Results:* User is added successfully with a success message shown.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000zj:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:28 PM
+Update Configuration with Valid Inputs.,NA-63,10233,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Low,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:28 PM,11/Dec/24 1:59 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC054
+*Objective:* Verify that authorized users can update configurations successfully.
+*Pre-conditions:* Valid {{key}} cookie is set.
+*Steps to Execute:*
+
+# Set a valid {{key}} cookie.
+# Send a POST request to {{/admin/config}} with valid inputs (principalName, ldapUrl, domain, exchangeIp, password).
+# Observe the response and flash attributes.
+*Expected Results:* Configuration is updated, and a success message is shown.
+*Actual Results:* Configuration is updated with a successfull confirmation message.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000zb:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:28 PM
+Configuration Page Fetch Without Authorization.,NA-62,10232,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:26 PM,10/Dec/24 11:26 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC053
+*Objective:* Verify that unauthorized users are redirected to the login page when accessing the configuration page.
+*Pre-conditions:* No valid {{key}} cookie is set.
+*Steps to Execute:*
+
+# Send a GET request to {{/admin/config}} without the {{key}} cookie.
+# Observe the response.
+*Expected Results:* Response is a redirection to {{/admin/login}}.
+*Actual Results:* Unverified users are redirected to the login page.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000z3:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:26 PM
+Admin Users Page Access With Authentication.,NA-61,10231,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Low,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:25 PM,11/Dec/24 1:59 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC052
+*Objective:* Verify that authorized users can access the admin users page.
+*Pre-conditions:* Valid {{key}} cookie is set.
+*Steps to Execute:*
+
+# Set a valid {{key}} cookie.
+# Send a GET request to {{admin/users}}.
+# Observe the response and check for the users map data in the model.
+*Expected Results:* Response status is 200 OK, and users map is present in the model.
+*Actual Results:* Verified users have been given the access to the admin panel.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000yv:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:25 PM
+Admin Users Page Access Without Authentication.,NA-60,10230,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:23 PM,10/Dec/24 11:24 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC051
+*Objective:* Verify that unauthorized users are redirected to the login page when attempting to access the admin users page.
+*Pre-conditions:* No valid {{key}} cookie is set.
+*Steps to Execute:*
+
+# Send a GET request to {{/admin/users}} without the {{key}} cookie.
+# Observe the response.
+*Expected Results:* Response is a redirection to {{/admin/login}}.
+*Actual Results:* The unauthorized user are redirected to admin panel.
+*Status:* Pass.
+
+h3. ",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000yn:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:23 PM
+Successful User Addition and QR Code Saving.,NA-58,10228,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:12 PM,10/Dec/24 11:12 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC049
+*Objective:* Verify successful user addition and QR code saving.
+*Pre-conditions:* Encrypted key is valid, user does not already exist.
+*Steps to Execute:*
+
+# Make a {{POST}} request to {{/admin/user/save}} with a valid {{key}}, {{username}}, and {{token}}.
+# Observe the response.
+*Expected Results:* Response status is {{200 OK}}, with the body ""User added successfully"". A QR code file is saved in the specified directory.
+*Actual Results:* Users are successfully being added and QR code is being saved in the form of Google authenticator key successfullly.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000y7:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:12 PM
+Add User Already Exists.,NA-57,10227,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:11 PM,10/Dec/24 11:11 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC048
+*Objective:* Verify behavior when trying to add a user that already exists.
+*Pre-conditions:* Encrypted key is valid, user already exists in the database.
+*Steps to Execute:*
+
+# Make a {{POST}} request to {{/admin/user/save}} with a valid {{key}}, {{username}}, and {{token}}.
+# Observe the response.
+*Expected Results:* Response status is {{400 BAD REQUEST}}, with the body ""User already exists"".
+*Actual Results:* No duplicate user can exist. System gives error on duplicate user creation.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000xz:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:11 PM
+Successful QR Code Generation.,NA-56,10226,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:10 PM,10/Dec/24 11:10 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC047
+*Objective:* Verify successful QR code generation for valid inputs.
+*Pre-conditions:* Encrypted key is valid.
+*Steps to Execute:*
+
+# Make a {{GET}} request to {{/admin/qrcode}} with valid {{secret}} and {{username}}.
+# Observe the response.
+*Expected Results:* Response status is {{200 OK}}, and the response contains PNG image bytes.
+*Actual Results:* For authorized users QR code is generated succesfully.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000xr:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:10 PM
+Unauthorized QR Code Generation.,NA-55,10225,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:09 PM,10/Dec/24 11:09 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC046
+*Objective:* Verify that QR code generation is denied for unauthorized requests.
+*Pre-conditions:* Encrypted key is invalid.
+*Steps to Execute:*
+
+# Make a {{GET}} request to {{/admin/qrcode}} without a valid key in the cookie.
+# Observe the response.
+*Expected Results:* Response status is {{403 FORBIDDEN}}, with the body ""Access Denied"".
+*Actual Results:* For unauthorized users the QR code is not generated.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000xj:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:09 PM
+Successful User Deletion.,NA-54,10224,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:07 PM,10/Dec/24 11:07 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC045
+*Objective:* Verify successful deletion of an existing user.
+*Pre-conditions:* Encrypted key is valid, user key exists.
+*Steps to Execute:*
+
+# Make a {{DELETE}} request to {{/admin/users/{key}}} with a valid {{key}} in the cookie and an existing user key.
+# Observe the response.
+*Expected Results:* Response status is {{200 OK}}, with the body ""User with key {key} deleted successfully"".
+*Actual Results:* User is deleted successfully.
+*Status:* Pass/Fail",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000xb:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:07 PM
+ User Not Found During Deletion.,NA-53,10223,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:05 PM,10/Dec/24 11:06 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC044
+*Objective:* Verify behavior when attempting to delete a non-existing user.
+*Pre-conditions:* Encrypted key is valid, user key does not exist.
+*Steps to Execute:*
+
+# Make a {{DELETE}} request to {{/admin/users/{key}}} with a valid {{key}} in the cookie and a non-existing user key.
+# Observe the response.
+*Expected Results:* Response status is {{404 NOT FOUND}}, with the body ""User with key {key} not found"".
+*Actual Results:* The user with an invalid key is not deleted and error occurs.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000x3:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:06 PM
+Unauthorized User Deletion Request.,NA-52,10222,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:04 PM,10/Dec/24 11:04 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC043
+*Objective:* Verify that user deletion is denied for unauthorized users.
+*Pre-conditions:* Encrypted key is invalid.
+*Steps to Execute:*
+
+# Make a {{DELETE}} request to {{/admin/users/{key}}} with an invalid {{key}} in the cookie.
+# Observe the response.
+*Expected Results:* Response status is {{403 FORBIDDEN}}, with the body ""Access Denied"".
+*Actual Results:* The operation to delete an unauthorized user is unsuccessfull.
+*Status:* Pass.
+
+----
+
+h3. ",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000wv:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:04 PM
+Successful Token Generation.,NA-51,10221,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 11:02 PM,10/Dec/24 11:02 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC042
+*Objective:* Verify successful token generation for authorized users.
+*Pre-conditions:* Encrypted key is valid.
+*Steps to Execute:*
+
+# Make a {{GET}} request to {{/admin/generate-token}} with a valid {{key}} in the cookie.
+# Observe the response.
+*Expected Results:* Response status is {{200 OK}}, with the body containing a valid Google Authenticator key.
+*Actual Results:* The generation of google authenticator key is successfull.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000wn:,,,,,,,,,,,,,,,To Do,10/Dec/24 11:02 PM
+Unauthorized Token Generation Request.,NA-50,10220,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,10/Dec/24 9:32 PM,10/Dec/24 9:32 PM,10/Dec/24 11:00 PM,,,0,"*Test Case ID:* TC041
+*Objective:* Verify that token generation is denied for unauthorized users.
+*Pre-conditions:* Encrypted key is invalid.
+*Steps to Execute:*
+
+# Make a {{GET}} request to {{/admin/generate-token}} with an invalid {{key}} in the cookie.
+# Observe the response.
+*Expected Results:* Response status is {{403 FORBIDDEN}}, with the body ""Access Denied"".
+*Actual Results:* Error occurs with Access Denied.
+*Status:* Pass.",,Zaim Abbasi,712020:996419f0-8d14-4c72-a3d6-12df3a1129ac,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000wf:,,,,,,,,,,,,,,,To Do,10/Dec/24 9:32 PM
+Verify Logging of Failed Login Attempts.,NA-49,10219,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 9:14 PM,10/Dec/24 9:16 PM,10/Dec/24 9:15 PM,,,0,"*Test Case ID:* TC040
+*Objective:* Ensure all failed login attempts are logged.
+*Pre-conditions:* Enable logging. Use incorrect credentials.
+*Steps to Execute:*
+
+# Send multiple failed login attempts to {{/admin-login}}.
+# Check application logs.
+*Expected Results:*
+
+* Logs contain entries for each failed attempt with the username and IP address.
+*Actual Results:* Failed login record appears with username and IP address.
+*Status:* Pass.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000w7:,,,,,,,,,,,,,,,To Do,10/Dec/24 9:14 PM
+Verify Unauthorized User Handling.,NA-48,10218,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 9:12 PM,10/Dec/24 9:12 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC039
+*Objective:* Ensure non-admin users cannot log in.
+*Pre-conditions:* Username not set to {{admin}}.
+*Steps to Execute:*
+
+# Send a {{POST}} request to {{/admin-login}} with a non-admin username.
+# Verify the response.
+*Expected Results:*
+
+* Response status is 400 Bad Request.
+* Response body contains {{error: Invalid username or password}}.
+*Actual Results:* Error occurs {{Invalid username or password}}
+*Status:* Pass.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000vz:,,,,,,,,,,,,,,,To Do,10/Dec/24 9:12 PM
+Verify Internal Server Error Handling.,NA-47,10217,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 9:11 PM,10/Dec/24 9:11 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC038
+*Objective:* Ensure {{/admin-login}} handles unexpected server errors properly.
+*Pre-conditions:* Simulate a server-side error (e.g., exception in code).
+*Steps to Execute:*
+
+# Trigger an exception during the login process.
+*Expected Results:*
+
+* Response status is 500 Internal Server Error.
+* Response body contains {{error: Internal server error}}.
+*Actual Results:* Internal server error occurs.
+*Status:* Pass.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000vr:,,,,,,,,,,,,,,,To Do,10/Dec/24 9:11 PM
+Verify Login with Missing Parameters,NA-46,10216,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 9:08 PM,11/Dec/24 1:58 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC037
+*Objective:* Ensure {{/admin-login}} handles missing parameters gracefully.
+*Pre-conditions:* Omit one or more required parameters (e.g., username, password).
+*Steps to Execute:*
+
+# Send a {{POST}} request to {{/admin-login}} with missing fields.
+# Verify the response.
+*Expected Results:*
+
+* Response status is 400 Bad Request.
+* Response body contains appropriate error messages.
+*Actual Results:* Error message occurs of missing fields.
+*Status:* Pass.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000vj:,,,,,,,,,,,,,,,To Do,10/Dec/24 9:08 PM
+Verify Cookie Creation on Successful Login.,NA-45,10215,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 9:04 PM,11/Dec/24 1:58 PM,10/Dec/24 9:04 PM,,,0,"*Test Case ID:* TC036
+*Objective:* Ensure a session cookie is created after a successful login.
+*Pre-conditions:* Correct username and password. Valid CAPTCHA.
+*Steps to Execute:*
+
+# Send a {{POST}} request to {{/admin-login}} with valid credentials and CAPTCHA.
+# Verify the {{Set-Cookie}} header in the response.
+*Expected Results:*
+
+* Google Authenticator key is generated for successfull login.
+*Actual Results:* 
+*Status:* Pass.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000vb:,,,,,,,,,,,,,,,To Do,10/Dec/24 9:04 PM
+Verify Admin Account Lockout Handling,NA-44,10214,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 9:01 PM,11/Dec/24 1:58 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC035
+*Objective:* Ensure locked-out users are notified properly.
+*Pre-conditions:* User account locked out due to failed login attempts.
+*Steps to Execute:*
+
+# Simulate a locked-out account.
+# Send a {{POST}} request to {{/admin-login}}.
+*Expected Results:*
+
+* Response status is 400 Bad Request.
+* Response body contains the lockout duration message.
+*Actual Results:* After 3 successfull invalid login attempts error occurs for lockout.
+*Status:* Pass.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000v3:,,,,,,,,,,,,,,,To Do,10/Dec/24 9:01 PM
+Verify CAPTCHA Validation Failure,NA-43,10213,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 9:00 PM,11/Dec/24 1:58 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC034
+*Objective:* Ensure {{/admin-login}} rejects invalid CAPTCHA.
+*Pre-conditions:* Correct username and password. Invalid CAPTCHA.
+*Steps to Execute:*
+
+# Send a {{POST}} request to {{/admin-login}} with an invalid CAPTCHA.
+# Verify the response.
+*Expected Results:*
+
+* Response status is 400 Bad Request.
+* Response body contains {{error: Invalid CAPTCHA}}.
+*Actual Results:* After retrieving invalid captcha login error occurs.
+*Status:* Pass.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000uv:,,,,,,,,,,,,,,,To Do,10/Dec/24 9:00 PM
+Verify Invalid Credentials Handling,NA-42,10212,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 9:00 PM,11/Dec/24 1:58 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC033
+*Objective:* Ensure {{/admin-login}} handles incorrect credentials appropriately.
+*Pre-conditions:* Invalid username or password. Valid CAPTCHA.
+*Steps to Execute:*
+
+# Send a {{POST}} request to {{/admin-login}} with invalid credentials.
+# Verify the response.
+*Expected Results:*
+
+* Response status is 400 Bad Request.
+* Response body contains {{error: Invalid username or password}}.
+*Actual Results:* With invalid login and password login error occurs at the end point testing.
+*Status:* Pass.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000un:,,,,,,,,,,,,,,,To Do,10/Dec/24 9:00 PM
+Verify Successful Admin Login,NA-41,10211,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 8:59 PM,11/Dec/24 1:58 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC032
+*Objective:* Ensure {{/admin-login}} allows access with correct admin credentials.
+*Pre-conditions:* Correct username ({{admin}}) and password. Valid CAPTCHA.
+*Steps to Execute:*
+
+# Send a {{POST}} request to {{/admin-login}} with:
+#* Username: {{admin}}
+#* Password: Correct password.
+#* CAPTCHA: Valid CAPTCHA ID and response.
+# Verify the response.
+*Expected Results:*
+
+* Response status is 200 OK.
+* Response body contains {{redirect: /admin}}.
+*Actual Results:* The admin is logged in successfully.
+*Status:* Pass/Fail.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000uf:,,,,,,,,,,,,,,,To Do,10/Dec/24 8:59 PM
+Verify Admin Login Page Rendering,NA-40,10210,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,High,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 8:58 PM,11/Dec/24 1:58 PM,11/Dec/24 11:15 PM,,,0,"*Test Case ID:* TC031
+*Objective:* Ensure {{/admin/login}} endpoint renders the login page correctly.
+*Pre-conditions:* None.
+*Steps to Execute:*
+
+# Send a {{GET}} request to {{/admin/login}}.
+# Verify the returned view name.
+*Expected Results:*
+
+* The response status is 200 OK.
+* The view name is {{""admin/admin-login""}}.
+*Actual Results:* The admin login page is renderred successfully.
+*Status:* Pass.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000u7:,,,,,,,,,,,,,,,To Do,10/Dec/24 8:58 PM
+Verify Successful OTP Verification,NA-38,10208,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 8:45 PM,10/Dec/24 8:45 PM,11/Dec/24 11:15 PM,,,0,"* *Test Case ID:* TC029
+* *Objective:* Ensure /verifyOtp allows successful OTP verification.
+* *Pre-conditions:* Mock GoogleAuthenticator.authorize to return true for OTP verification.
+* *Steps to Execute:*
+*# Call /verifyOtp with a correct OTP.
+*# Check the response status and body.
+* *Expected Results:*
+** Response status is 200 OK.
+** Body contains the expected redirect URL (""/autoLogin"").
+* *Actual Results:* The OTP verification is done successfully.
+* *Status:* Pass.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000tr:,,,,,,,,,,,,,,,To Do,10/Dec/24 8:45 PM
+Verify OTP Lockout.,NA-37,10207,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 8:42 PM,10/Dec/24 8:42 PM,11/Dec/24 11:15 PM,,,0,"* *Test Case ID:* TC028
+* *Objective:* Ensure /verifyOtp locks the account after multiple failed OTP attempts.
+* *Pre-conditions:* Mock UserSecurity.isOtpLockedOut to return true.
+* *Steps to Execute:*
+*# Call /verifyOtp after multiple failed OTP attempts for the same user.
+*# Check the response status and body.
+* *Expected Results:*
+** Response status is 403 Forbidden.
+** Body contains ""Account locked due to multiple failed OTP attempts.""
+* *Actual Results:* Account locked out for 2 minutes.
+* *Status:* Pass.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000tj:,,,,,,,,,,,,,,,To Do,10/Dec/24 8:42 PM
+Verify OTP Verification Failure,NA-36,10206,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 8:39 PM,10/Dec/24 8:42 PM,10/Dec/24 8:42 PM,,,0,"* *Test Case ID:* TC027
+* *Objective:* Ensure /verifyOtp rejects incorrect OTP.
+* *Pre-conditions:* Mock GoogleAuthenticator.authorize to return false for OTP verification.
+* *Steps to Execute:*
+*# Call /verifyOtp with an incorrect OTP.
+*# Check the response status and body.
+* *Expected Results:*
+** Response status is 400 Bad Request.
+** Body contains ""Invalid OTP.""
+* *Actual Results:* Incorrect OTP’s are rejected.
+* *Status:* Pass.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000tb:,,,,,,,,,,,,,,,To Do,10/Dec/24 8:39 PM
+Verify Invalid OTP Format,NA-35,10205,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 8:33 PM,10/Dec/24 8:42 PM,10/Dec/24 8:42 PM,,,0,"* *Test Case ID:* TC026
+* *Objective:* Ensure /verifyOtp rejects invalid OTP format.
+* *Pre-conditions:* None.
+* *Steps to Execute:*
+*# Call /verifyOtp with an invalid OTP format (e.g., non-numeric OTP).
+*# Check the response status and body.
+* *Expected Results:*
+** Response status is 400 Bad Request.
+** Body contains ""Invalid OTP format.""
+* *Actual Results:* Invalid OTP’s are rejected.
+* *Status:* Pass.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000t3:,,,,,,,,,,,,,,,To Do,10/Dec/24 8:33 PM
+ Verify CAPTCHA Already Used,NA-34,10204,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 8:32 PM,10/Dec/24 8:43 PM,10/Dec/24 8:43 PM,,,0,"* *Test Case ID:* TC025
+* *Objective:* Ensure /verify rejects CAPTCHAs that have already been used.
+* *Pre-conditions:* Mock CaptchaService.verifyCaptcha to simulate a previously used CAPTCHA.
+* *Steps to Execute:*
+*# Call /verify with a previously used captchaId.
+*# Check the response status and body.
+* *Expected Results:*
+** Response status is 400 Bad Request.
+** Body contains ""CAPTCHA already used.""
+* *Actual Results:* Already in used Captchas give errors.
+* *Status:* Pass.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000sv:,,,,,,,,,,,,,,,To Do,10/Dec/24 8:32 PM
+Verify Successful Login with Correct Credentials,NA-33,10203,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 8:31 PM,10/Dec/24 8:43 PM,10/Dec/24 8:43 PM,,,0,"* *Test Case ID:* TC024
+* *Objective:* Ensure /login allows successful login with correct username and password.
+* *Pre-conditions:* None.
+* *Steps to Execute:*
+*# Call /login with valid credentials (username: [""syedhussainmurtaza06@gmail.com|mailto:""syedhussainmurtaza06@gmail.com]"", password: ""nadra@123"").
+*# Check the response status and body.
+* *Expected Results:*
+** Response status is 200 OK.
+** Body contains the expected redirect URL (""/autoLogin"").
+* *Actual Results:* The user account is logged in successfully.
+* *Status:* Pass.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000sn:,,,,,,,,,,,,,,,To Do,10/Dec/24 8:31 PM
+Verify User Lockout,NA-32,10202,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 8:30 PM,10/Dec/24 8:38 PM,10/Dec/24 8:38 PM,,,0,"* *Test Case ID:* TC023
+* *Objective:* Ensure /login rejects login attempts for locked-out accounts.
+* *Pre-conditions:* Mock UserSecurity.isLockedOut to return true.
+* *Steps to Execute:*
+*# Call /login with a locked-out account username and any password.
+*# Check the response status and body.
+* *Expected Results:*
+** Response status is 403 Forbidden.
+** Body contains ""Account locked due to multiple failed attempts.""
+* *Actual Results:* Error message contains ""Account locked due to multiple failed attempts.""
+* *Status:* Pass.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000sf:,,,,,,,,,,,,,,,To Do,10/Dec/24 8:30 PM
+Verify Password Length Validation,NA-31,10201,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 8:29 PM,10/Dec/24 8:38 PM,10/Dec/24 8:36 PM,,,0,"* *Test Case ID:* TC022
+* *Objective:* Ensure /login rejects passwords shorter than 3 characters.
+* *Pre-conditions:* None.
+* *Steps to Execute:*
+*# Call /login with a password that is less than 3 characters.
+*# Check the response status and body.
+* *Expected Results:*
+** Response status is 400 Bad Request.
+** Body contains ""Password must be at least 3 characters long.""
+* *Actual Results:* Error message contains ""Password must be at least 3 characters long.""
+* *Status:* Pass.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000s7:,,,,,,,,,,,,,,,To Do,10/Dec/24 8:29 PM
+Verify CAPTCHA Invalid,NA-30,10200,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 8:27 PM,10/Dec/24 8:38 PM,10/Dec/24 8:38 PM,,,0,"* *Test Case ID:* TC021
+* *Objective:* Ensure /login rejects invalid CAPTCHA.
+* *Pre-conditions:* Mock CaptchaService.verifyCaptcha to return false for the CAPTCHA.
+* *Steps to Execute:*
+*# Call /login with an invalid CAPTCHA and valid credentials.
+*# Check the response status and body.
+* *Expected Results:*
+** Response status is 400 Bad Request.
+** Body contains ""CAPTCHA is invalid.""
+* *Actual Results:* Error message occurs with Captcha Invalid service.
+* *Status:* Pass.",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000rz:,,,,,,,,,,,,,,,To Do,10/Dec/24 8:27 PM
+Verify CAPTCHA - Expired CAPTCHA,NA-28,10198,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 8:07 PM,10/Dec/24 8:07 PM,11/Dec/24 11:15 PM,,,0,"* *Test Case ID:* TC019
+* *Objective:* Ensure {{/verify}} rejects expired CAPTCHAs.
+* *Pre-conditions:* Mock {{CaptchaService.verifyCaptcha}} to simulate expiration.
+* *Steps to Execute:*
+*# Call {{/verify}} with an expired {{captchaId}}.
+*# Check the response.
+* *Expected Results:*
+** Response status is {{400 Bad Request}}.
+** Body contains {{""Invalid CAPTCHA.""}}.
+* *Actual Results:* _Error message occurs with Invalid Captcha_
+* *Status:* _Pass/Fail._",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000rj:,,,,,,,,,,,,,,,To Do,10/Dec/24 8:07 PM
+Verify CAPTCHA - Special Characters in Input,NA-27,10197,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 8:06 PM,10/Dec/24 8:06 PM,10/Dec/24 8:06 PM,,,0,"* *Test Case ID:* TC018
+* *Objective:* Ensure {{/verify}} handles special characters in {{captchaId}} or {{captcha}}.
+* *Pre-conditions:* None.
+* *Steps to Execute:*
+*# Call {{/verify}} with special characters in the inputs.
+*# Check the response.
+* *Expected Results:*
+** Response status is {{400 Bad Request}}.
+** Body contains {{""Invalid CAPTCHA.""}}.
+* *Actual Results:* _Error message occurs with 400 Bad Request_
+* *Status:* _Pass._",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000rb:,,,,,,,,,,,,,,,To Do,10/Dec/24 8:06 PM
+Generate CAPTCHA - Service Dependency Failure,NA-26,10196,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 8:05 PM,10/Dec/24 8:05 PM,11/Dec/24 11:15 PM,,,0,"* *Test Case ID:* TC017
+* *Objective:* Verify behavior when {{CaptchaService}} methods throw an exception.
+* *Pre-conditions:* Mock {{CaptchaService}} methods to throw exceptions.
+* *Steps to Execute:*
+*# Call the {{/generate}} endpoint.
+*# Check the response.
+* *Expected Results:*
+** Response status is {{500 Internal Server Error}}.
+** Body contains an appropriate error message.
+* *Actual Results:* _Response shows error message._
+* *Status:* _Pass._",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000r3:,,,,,,,,,,,,,,,To Do,10/Dec/24 8:05 PM
+Verify CAPTCHA - Null Inputs,NA-25,10195,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 8:00 PM,10/Dec/24 8:03 PM,10/Dec/24 8:03 PM,,,0,"* *Test Case ID:* TC016
+* *Objective:* Ensure {{/verify}} handles null or missing parameters gracefully.
+* *Pre-conditions:* None.
+* *Steps to Execute:*
+*# Call the {{/verify}} endpoint with null or missing {{captchaId}} or {{captcha}}.
+*# Check the response.
+* *Expected Results:*
+** Response status is {{400 Bad Request}}.
+** Body contains an appropriate error message (e.g., {{""Invalid CAPTCHA.""}}).
+* *Actual Results:* _Error message occurs with response Invalid Captcha._
+* *Status:* _Pass._",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000qv:,,,,,,,,,,,,,,,To Do,10/Dec/24 8:00 PM
+Generate CAPTCHA - Missing Headers,NA-24,10194,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 7:58 PM,10/Dec/24 8:02 PM,10/Dec/24 8:02 PM,,,0,"* *Test Case ID:* TC015
+* *Objective:* Verify the {{/generate}} endpoint sets {{Captcha-ID}} header.
+* *Pre-conditions:* Mock {{CaptchaService.storeCaptcha}} to return a valid ID.
+* *Steps to Execute:*
+*# Call the {{/generate}} endpoint.
+*# Check headers for {{Captcha-ID}}.
+* *Expected Results:*
+** {{Captcha-ID}} header is present with a non-empty value.
+* *Actual Results:* _The captcha ID headers are present with a valid value._
+* *Status:* _Pass._",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000qn:,,,,,,,,,,,,,,,To Do,10/Dec/24 7:58 PM
+Verify CAPTCHA - Invalid Input,NA-23,10193,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 7:58 PM,10/Dec/24 8:02 PM,10/Dec/24 8:02 PM,,,0,"* *Test Case ID:* TC014
+* *Objective:* Ensure {{/verify}} endpoint rejects invalid CAPTCHA inputs.
+* *Pre-conditions:* Mock {{CaptchaService.verifyCaptcha}} to return {{false}}.
+* *Steps to Execute:*
+*# Call the {{/verify}} endpoint with invalid {{captchaId}} or {{captcha}}.
+*# Check the response.
+* *Expected Results:*
+** Response status is {{400 Bad Request}}.
+** Body contains {{""Invalid CAPTCHA.""}}.
+* *Actual Results:* _The response contains_ {{""Invalid CAPTCHA.""}}
+* *Status:* _Pass._",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000qf:,,,,,,,,,,,,,,,To Do,10/Dec/24 7:58 PM
+Verify CAPTCHA - Valid Input,NA-22,10192,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 7:57 PM,10/Dec/24 8:02 PM,10/Dec/24 8:02 PM,,,0,"* *Test Case ID:* TC013
+* *Objective:* Ensure {{/verify}} endpoint validates correct CAPTCHA inputs.
+* *Pre-conditions:* Mock {{CaptchaService.verifyCaptcha}} to return {{true}}.
+* *Steps to Execute:*
+*# Call the {{/verify}} endpoint with valid {{captchaId}} and {{captcha}}.
+*# Check the response.
+* *Expected Results:*
+** Response status is {{200 OK}}.
+** Body contains {{""CAPTCHA verified successfully.""}}.
+* *Actual Results:* _The captcha is verified successfully._
+* *Status:* _Pass._",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000q7:,,,,,,,,,,,,,,,To Do,10/Dec/24 7:57 PM
+Generate CAPTCHA - Image Conversion Failure,NA-21,10191,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 7:55 PM,10/Dec/24 8:02 PM,10/Dec/24 8:02 PM,,,0,"* *Test Case ID:* TC012
+* *Objective:* Verify behavior when {{ImageIO.write}} throws an {{IOException}}.
+* *Pre-conditions:* Simulate {{IOException}} in {{convertImageToByteArray}}.
+* *Steps to Execute:*
+*# Call the {{/generate}} endpoint with a mock throwing {{IOException}}.
+*# Check the response.
+* *Expected Results:*
+** Response status is {{500 Internal Server Error}}.
+** Body contains the error message {{""Error generating CAPTCHA image.""}}.
+* *Actual Results:* _Error message occurs with displaying_ {{""Error generating CAPTCHA image.""}}
+* *Status:* _Pass._",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000pz:,,,,,,,,,,,,,,,To Do,10/Dec/24 7:55 PM
+Generate CAPTCHA - Valid Response,NA-20,10190,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 7:54 PM,10/Dec/24 8:02 PM,10/Dec/24 8:02 PM,,,0,"* *Test Case ID:* TC011
+* *Objective:* Verify that the {{/generate}} endpoint returns a valid CAPTCHA image with headers.
+* *Pre-conditions:* {{CaptchaService}} methods ({{generateCaptchaText}}, {{storeCaptcha}}, {{generateCaptchaImage}}) return valid results.
+* *Steps to Execute:*
+*# Call the {{/generate}} endpoint.
+*# Check the response headers and body.
+* *Expected Results:*
+** Response status is {{200 OK}}.
+** Header contains {{Captcha-ID}}.
+** Body contains valid image bytes.
+* *Actual Results:* _A valid captcha image is generated._
+* *Status:* _Pass._",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000pr:,,,,,,,,,,,,,,,To Do,10/Dec/24 7:54 PM
+Verify OTP Lockout for Exact 3 Failed Attempts,NA-19,10189,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 7:51 PM,10/Dec/24 7:51 PM,11/Dec/24 11:15 PM,,,0,"* *Test Case ID:* TC010
+* *Objective:* Ensure the OTP lockout is triggered only after 3 exact failed OTP attempts.
+* *Pre-conditions:* Create an instance of {{UserSecurity}} with a valid email.
+* *Steps to Execute:*
+*# Call {{handleFailedOtp()}} method 3 times.
+*# Check {{isOtpLockedOut()}} and {{otpLockoutEndTime}}.
+* *Expected Results:*
+** {{isOtpLockedOut()}} returns {{true}} after 3 failed attempts.
+** {{otpLockoutEndTime}} is set to the current time + 60 seconds.
+* *Actual Results:* _The OTP locks out for exact 3 failed login attempts._
+* *Status:* _Pass._",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000pj:,,,,,,,,,,,,,,,To Do,10/Dec/24 7:51 PM
+Check No Lockout on Fewer Than 3 Failed Login Attempts,NA-18,10188,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 7:50 PM,10/Dec/24 7:50 PM,11/Dec/24 11:15 PM,,,0,"* *Test Case ID:* TC009
+* *Objective:* Verify that the user is not locked out if fewer than 3 failed login attempts are made.
+* *Pre-conditions:* Create an instance of {{UserSecurity}} with a valid email.
+* *Steps to Execute:*
+*# Call {{handleFailedLogin()}} method 2 times.
+*# Call {{isLockedOut()}}.
+* *Expected Results:*
+** {{isLockedOut()}} returns {{false}} after 2 failed attempts.
+** {{failedAttempts}} is 2, and {{lockoutEndTime}} remains null.
+* *Actual Results:* The user is not locked out in fewer than 3 attempts.
+* *Status:* _Pass._",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000pb:,,,,,,,,,,,,,,,To Do,10/Dec/24 7:50 PM
+Ensure Email Address is Stored Correctly,NA-17,10187,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 7:47 PM,10/Dec/24 7:47 PM,11/Dec/24 11:15 PM,,,0,"* *Test Case ID:* TC008
+* *Objective:* Verify that the email address is stored and returned correctly by the {{getEmail()}} method.
+* *Pre-conditions:* Create an instance of {{UserSecurity}} with a valid email address.
+* *Steps to Execute:*
+*# Call the {{getEmail()}} method.
+* *Expected Results:*
+** The returned email matches the one provided during object instantiation.
+* *Actual Results:* _Email address is stored successfully._
+* *Status:* _Pass._",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000p3:,,,,,,,,,,,,,,,To Do,10/Dec/24 7:47 PM
+Verify OTP Lockout Timer Resets After Successful OTP,NA-16,10186,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 7:47 PM,10/Dec/24 7:47 PM,11/Dec/24 11:15 PM,,,0,"* *Test Case ID:* TC007
+* *Objective:* Ensure the OTP lockout timer is reset after a successful OTP entry during an ongoing lockout period.
+* *Pre-conditions:* Create an instance of {{UserSecurity}} and trigger an OTP lockout by simulating 3 failed OTP attempts.
+* *Steps to Execute:*
+*# During the OTP lockout period, call {{handleSuccessfulOtp()}}.
+*# Check {{otpLockoutEndTime}} and {{isOtpLockedOut()}}.
+* *Expected Results:*
+** {{otpLockoutEndTime}} is null after calling {{handleSuccessfulOtp()}}.
+** {{isOtpLockedOut()}} returns {{false}}.
+* *Actual Results:* _The timer resets after the successfull login._
+* *Status:* _Pass/Fail._",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000ov:,,,,,,,,,,,,,,,To Do,10/Dec/24 7:47 PM
+Verify Lockout Timer Resets After Successful Login,NA-15,10185,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 7:46 PM,10/Dec/24 7:46 PM,11/Dec/24 11:15 PM,,,0,"* *Test Case ID:* TC006
+* *Objective:* Ensure the lockout timer is reset after a successful login, even during an ongoing lockout period.
+* *Pre-conditions:* Create an instance of {{UserSecurity}} and trigger a lockout by simulating 3 failed login attempts.
+* *Steps to Execute:*
+*# During the lockout period, call {{handleSuccessfulLogin()}}.
+*# Check {{lockoutEndTime}} and {{isLockedOut()}}.
+* *Expected Results:*
+** {{lockoutEndTime}} is null after calling {{handleSuccessfulLogin()}}.
+** {{isLockedOut()}} returns {{false}}.
+* *Actual Results:* _the timer sets to null after calling the handlesuccessfullogin function._
+* *Status:* _Pass._",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000on:,,,,,,,,,,,,,,,To Do,10/Dec/24 7:46 PM
+Check Lockout Status During Lockout Period,NA-14,10184,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 7:44 PM,10/Dec/24 7:44 PM,10/Dec/24 8:00 PM,,,0,"* *Test Case ID:* TC005
+* *Objective:* Verify the lockout status when the user is within the lockout period.
+* *Pre-conditions:* Create an instance of {{UserSecurity}} and simulate 3 failed login attempts to trigger a lockout.
+* *Steps to Execute:*
+*# Immediately after triggering a lockout, call {{isLockedOut()}}.
+*# Wait for 60 seconds and call {{isLockedOut()}} again.
+* *Expected Results:*
+** {{isLockedOut()}} returns {{true}} within the lockout period.
+** {{isLockedOut()}} returns {{false}} after the lockout period ends.
+* *Actual Results:* _islockout() returns true value and it returns false after the lockout period ends._
+* *Status:* _Pass._",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000of:,,,,,,,,,,,,,,,To Do,10/Dec/24 7:44 PM
+Reset Failed OTP Attempts After Successful OTP,NA-13,10183,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 7:43 PM,10/Dec/24 7:43 PM,11/Dec/24 11:15 PM,,,0,"* *Test Case ID:* TC004
+* *Objective:* Verify that a successful OTP resets the failed OTP attempts and lockout time.
+* *Pre-conditions:* Create an instance of {{UserSecurity}} and simulate 3 failed OTP attempts.
+* *Steps to Execute:*
+*# Call {{handleFailedOtp()}} 3 times to trigger a lockout.
+*# Call {{handleSuccessfulOtp()}}.
+*# Check {{otpFailedAttempts}} and {{otpLockoutEndTime}}.
+* *Expected Results:*
+** After calling {{handleSuccessfulOtp()}}, {{otpFailedAttempts}} is reset to 0, and {{otpLockoutEndTime}} is null.
+* *Actual Results:* _The_ {{handleSuccessfulOtp()}}, {{otpFailedAttempts}} is reset to 0, and {{otpLockoutEndTime}} is null.
+* *Status:* _Pass._",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000o7:,,,,,,,,,,,,,,,To Do,10/Dec/24 7:43 PM
+Handle Failed OTP Attempts,NA-12,10182,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 7:40 PM,10/Dec/24 7:40 PM,11/Dec/24 11:15 PM,,,0,"* *Test Case ID:* TC003
+* *Objective:* Verify the behavior when the maximum number of failed OTP attempts is reached.
+* *Pre-conditions:* Create an instance of {{UserSecurity}} with a valid email.
+* *Steps to Execute:*
+*# Call {{handleFailedOtp()}} method 3 times.
+*# Check the values of {{otpFailedAttempts}} and {{otpLockoutEndTime}} after each call.
+*# Call {{isOtpLockedOut()}} and observe the result.
+* *Expected Results:*
+** After 2 failed attempts, {{otpFailedAttempts}} is 2, and {{otpLockoutEndTime}} is null.
+** On the 3rd failed attempt, {{otpFailedAttempts}} is reset to 0, and {{otpLockoutEndTime}} is set to the current time + 60 seconds.
+** {{isOtpLockedOut()}} returns {{true}} after 3 failed attempts.
+* *Actual Results:* After 2 failed attempts, {{otpFailedAttempts}} is 2, and {{otpLockoutEndTime}} is null.
+* *Status:* _Pass._",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000nz:,,,,,,,,,,,,,,,To Do,10/Dec/24 7:40 PM
+Reset Failed Login Attempts After Successful Login,NA-11,10181,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 7:38 PM,10/Dec/24 7:38 PM,11/Dec/24 11:15 PM,,,0,"* *Test Case ID:* TC002
+* *Objective:* Verify that a successful login resets the failed login attempts and lockout time.
+* *Pre-conditions:* Create an instance of {{UserSecurity}} and simulate 3 failed login attempts.
+* *Steps to Execute:*
+*# Call {{handleFailedLogin()}} 3 times to trigger a lockout.
+*# Call {{handleSuccessfulLogin()}}.
+*# Check {{failedAttempts}} and {{lockoutEndTime}}.
+* *Expected Results:*
+** After calling {{handleSuccessfulLogin()}}, {{failedAttempts}} is reset to 0, and {{lockoutEndTime}} is null.
+* *Actual Results:* _Failed attempt is successfully set to 0._
+* *Status:* _Pass._",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000nr:,,,,,,,,,,,,,,,To Do,10/Dec/24 7:38 PM
+Handle Failed Login Attempts,NA-10,10180,Test,To Do,NA,NADRA AUTH,software,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,Medium,,,,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,10/Dec/24 7:32 PM,10/Dec/24 7:37 PM,11/Dec/24 1:46 PM,,,0,"* *Test Case ID:* TC001
+* *Objective:* Verify the behavior when the maximum number of failed login attempts is reached.
+* *Pre-conditions:* Create an instance of {{UserSecurity}} with a valid email.
+* *Steps to Execute:*
+*# Call {{handleFailedLogin()}} method 3 times.
+*# Check the values of {{failedAttempts}} and {{lockoutEndTime}} after each call.
+*# Call {{isLockedOut()}} and observe the result.
+* *Expected Results:*
+** After 2 failed attempts, {{failedAttempts}} is 2, and {{lockoutEndTime}} is null.
+** On the 3rd failed attempt, {{failedAttempts}} is reset to 0, and {{lockoutEndTime}} is set to the current time + 60 seconds.
+** {{isLockedOut()}} returns {{true}} after 3 failed attempts.
+* *Actual Results:* _The user is logged out for 2 minutes from the server._
+* *Status:* _Pass._",,i221513 Syed Hussain,641b1d900152b5f4f9f1e509,,,,,,,,,,,,,,,,,,,,,,,,,,,,0|i000nj:,,,,,,,,,,,,,,,To Do,10/Dec/24 7:32 PM
